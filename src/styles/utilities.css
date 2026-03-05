@@ -1,9 +1,9 @@
 @utility btn {
-  @apply box-border border font-medium leading-5 rounded-base text-sm px-4 py-2 focus:outline-none shadow-xs will-change-auto transition duration-300 ease-in-out cursor-pointer;
+  @apply box-border border font-medium leading-5 rounded-md text-sm px-4 py-2 focus:outline-none shadow-xs will-change-auto transition duration-300 ease-in-out cursor-pointer;
 }
 
 @utility link {
-  @apply cursor-pointer font-semibold transition duration-300 ease-in-out border-transparent hover:underline hover:underline-offset-2;
+  @apply cursor-pointer font-semibold hover:underline hover:underline-offset-2;
 }
 
 @utility btn-primary {
@@ -60,4 +60,12 @@
 
 @utility btn-ghost-outline {
   @apply btn text-heading bg-transparent border-default hover:bg-neutral-secondary-medium;
+}
+
+@utility input {
+  @apply block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-md focus:border-brand focus-visible:outline-none shadow-xs placeholder:text-body will-change-auto transition duration-300 ease-in-out;
+}
+
+@utility input-icon {
+  @apply absolute top-1/2 -translate-y-1/2 flex items-center ps-3 pointer-events-none;
 }
