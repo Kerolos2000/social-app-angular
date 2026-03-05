@@ -1,0 +1,63 @@
+@utility btn {
+  @apply box-border border font-medium leading-5 rounded-base text-sm px-4 py-2 focus:outline-none shadow-xs will-change-auto transition duration-300 ease-in-out cursor-pointer;
+}
+
+@utility link {
+  @apply cursor-pointer font-semibold transition duration-300 ease-in-out border-transparent hover:underline hover:underline-offset-2;
+}
+
+@utility btn-primary {
+  @apply btn text-white bg-brand border-transparent hover:bg-brand-strong;
+}
+
+@utility btn-secondary {
+  @apply btn text-body bg-neutral-secondary-medium border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading;
+}
+
+@utility btn-success {
+  @apply btn text-white bg-success border-transparent hover:bg-success-strong;
+}
+
+@utility btn-danger {
+  @apply btn text-white bg-danger border-transparent hover:bg-danger-strong;
+}
+
+@utility btn-warning {
+  @apply btn text-white bg-warning border-transparent hover:bg-warning-strong;
+}
+
+@utility btn-dark {
+  @apply btn text-white bg-dark border-transparent hover:bg-dark-strong;
+}
+
+@utility btn-ghost {
+  @apply btn text-heading bg-transparent border-transparent hover:bg-neutral-secondary-medium;
+}
+
+@utility btn-primary-outline {
+  @apply btn text-brand bg-transparent border-brand border-2 hover:bg-brand hover:text-white;
+}
+
+@utility btn-secondary-outline {
+  @apply btn text-body bg-transparent border-body border-2 hover:bg-body hover:text-white;
+}
+
+@utility btn-success-outline {
+  @apply btn text-success bg-transparent border-success border-2 hover:bg-success hover:text-white;
+}
+
+@utility btn-danger-outline {
+  @apply btn text-danger bg-transparent border-danger border-2 hover:bg-danger hover:text-white;
+}
+
+@utility btn-warning-outline {
+  @apply btn text-warning bg-transparent border-warning border-2 hover:bg-warning hover:text-white;
+}
+
+@utility btn-dark-outline {
+  @apply btn text-dark bg-transparent border-dark border-2 hover:bg-dark hover:text-white;
+}
+
+@utility btn-ghost-outline {
+  @apply btn text-heading bg-transparent border-default hover:bg-neutral-secondary-medium;
+}

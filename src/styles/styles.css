@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@reference "./utilities.css";
+
+@theme {
+  --color-fg-brand-subtle: var(--color-emerald-200);
+  --color-fg-brand: var(--color-emerald-700);
+  --color-fg-brand-strong: var(--color-emerald-900);
+
+  --color-brand-softer: var(--color-emerald-50);
+  --color-brand-soft: var(--color-emerald-100);
+  --color-brand: var(--color-emerald-700);
+  --color-brand-medium: var(--color-emerald-200);
+  --color-brand-strong: var(--color-emerald-800);
+}
