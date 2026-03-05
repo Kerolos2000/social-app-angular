@@ -22,3 +22,8 @@
     @apply text-gray-500;
   }
 }
+
+body {
+  background-color: var(--color-neutral-secondary-medium);
+  color: var(--color-body);
+}

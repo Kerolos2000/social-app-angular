@@ -1,4 +1,9 @@
-<div class="min-h-screen p-4 gap-4 items-center max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
-  <app-hero-section />
-  <div><router-outlet /></div>
+<div class="min-h-screen p-4 flex flex-col justify-center gap-4 lg:gap-6 max-w-7xl mx-auto ">
+  <app-header-section />
+
+  <div class="gap-4 lg:gap-6 grid grid-cols-1 lg:grid-cols-2">
+    <app-hero-section class="order-2 lg:order-1" />
+
+    <div class="order-1 lg:order-2"><router-outlet /></div>
+  </div>
 </div>

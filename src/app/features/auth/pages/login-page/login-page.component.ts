@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { LoginFormComponent } from '../../components/login-form/login-form.component';
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterLink],
+  imports: [LoginFormComponent],
   templateUrl: './login-page.component.html',
 })
 export class LoginPageComponent {}

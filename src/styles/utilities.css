@@ -67,5 +67,9 @@
 }
 
 @utility input-icon {
-  @apply absolute top-1/2 -translate-y-1/2 flex items-center ps-3 pointer-events-none;
+  @apply absolute top-1/2 -translate-y-1/2 flex items-center ps-3 pointer-events-none text-body;
+}
+
+@utility card {
+  @apply w-full border border-brand-medium rounded-md p-6 bg-white shadow-sm flex flex-col;
 }
