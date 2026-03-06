@@ -1,13 +1,22 @@
 @utility btn {
-  @apply box-border border font-medium leading-5 rounded-md text-sm px-4 py-2 focus:outline-none shadow-xs will-change-auto transition duration-300 ease-in-out cursor-pointer;
-}
+  @apply box-border border font-medium leading-5 rounded-md text-sm px-4 py-2 focus:outline-none shadow-xs will-change-auto transition duration-300 ease-in-out cursor-pointer inline-flex items-center justify-center gap-2;
 
-@utility link {
-  @apply cursor-pointer font-semibold hover:underline hover:underline-offset-2;
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  &[data-loading="true"] {
+    @apply cursor-not-allowed opacity-80;
+  }
+
+  &[data-loading="true"]::before {
+    content: "";
+    @apply w-4 h-4 border-2 border-brand-softer border-t-transparent rounded-full animate-spin;
+  }
 }
 
 @utility btn-primary {
-  @apply btn text-white bg-brand border-transparent hover:bg-brand-strong;
+  @apply btn min-h-10 text-white bg-brand border-transparent hover:bg-brand-strong;
 }
 
 @utility btn-secondary {
@@ -62,14 +71,26 @@
   @apply btn text-heading bg-transparent border-default hover:bg-neutral-secondary-medium;
 }
 
+@utility link {
+  @apply cursor-pointer font-semibold hover:underline hover:underline-offset-2;
+}
+
 @utility input {
-  @apply block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-md focus:border-brand focus-visible:outline-none shadow-xs placeholder:text-body will-change-auto transition duration-300 ease-in-out;
+  @apply block w-full ps-9 pe-3 h-10 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-md focus:border-brand focus-visible:outline-none shadow-xs placeholder:text-body will-change-auto transition duration-300 ease-in-out;
 }
 
 @utility input-icon {
-  @apply absolute top-1/2 -translate-y-1/2 flex items-center ps-3 pointer-events-none text-body;
+  @apply absolute top-5 -translate-y-1/2 flex items-center ps-3 pointer-events-none text-body;
+}
+
+@utility error {
+  @apply text-danger text-sm;
 }
 
 @utility card {
   @apply w-full border border-brand-medium rounded-md p-6 bg-white shadow-sm flex flex-col;
+}
+
+@utility card-error {
+  @apply w-full text-center border border-danger rounded-md p-2 bg-danger-soft shadow-sm flex flex-col;
 }
