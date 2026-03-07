@@ -1,1 +1,84 @@
-<p>register-page works!</p>
+<div class="card gap-4">
+  <h2 class="text-3xl font-bold text-body">Register</h2>
+
+  <form (ngSubmit)="registerSubmit()" [formGroup]="registerForm" class="flex flex-col gap-4">
+
+    <div class="relative flex flex-col gap-1">
+      <i class="input-icon fa-solid fa-user"></i>
+      <input type="text" class="input" placeholder="Enter your name" formControlName="name">
+      <app-error-control [control]="registerForm.get('name')" [messages]="{
+        required: 'Name is required'
+      }" />
+    </div>
+
+    <div class="relative flex flex-col gap-1">
+      <i class="input-icon fa-solid fa-at"></i>
+      <input type="text" class="input" placeholder="Enter your username" formControlName="username">
+      <app-error-control [control]="registerForm.get('username')" [messages]="{
+        required: 'Username is required',
+        pattern: 'Username must be at least 3 characters long and contain only lowercase letters, numbers, and underscores'
+      }" />
+    </div>
+
+    <div class="relative flex flex-col gap-1">
+      <i class="input-icon fa-solid fa-envelope"></i>
+      <input type="email" class="input" placeholder="Enter your email" formControlName="email">
+      <app-error-control [control]="registerForm.get('email')" [messages]="{
+        required: 'Email is required',
+        email: 'Enter a valid email'
+      }" />
+    </div>
+
+    <div class="relative flex flex-col gap-1">
+      <i class="input-icon fa-solid fa-cake-candles"></i>
+      <input type="date" class="input" formControlName="dateOfBirth">
+      <app-error-control [control]="registerForm.get('dateOfBirth')" [messages]="{
+        required: 'Date of birth is required'
+      }" />
+    </div>
+
+    <div class="relative flex flex-col gap-1">
+      <i class="input-icon fa-solid fa-venus-mars"></i>
+      <select class="input" formControlName="gender">
+        <option value="">Select gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <app-error-control [control]="registerForm.get('gender')" [messages]="{
+        required: 'Gender is required'
+      }" />
+    </div>
+
+    <div class="relative flex flex-col gap-1">
+      <i class="input-icon fa-solid fa-key"></i>
+      <input type="password" class="input" placeholder="Enter your password" formControlName="password">
+      <app-error-control [control]="registerForm.get('password')" [messages]="{
+        required: 'Password is required'
+      }" />
+    </div>
+
+    <div class="relative flex flex-col gap-1">
+      <i class="input-icon fa-solid fa-lock"></i>
+      <input type="password" class="input" placeholder="Confirm your password" formControlName="rePassword">
+      <app-error-control [control]="registerForm.get('rePassword')" [messages]="{
+        required: 'Confirm password is required',
+        mismatch: 'Passwords do not match'
+      }" />
+    </div>
+
+    <button [attr.data-loading]="loading" type="submit" class="btn-primary w-full" [disabled]="registerForm.invalid">
+      Register
+    </button>
+
+    @if(formError) {
+    <div class="card-error">
+      <p class="error">{{ formError }}</p>
+    </div>
+    }
+  </form>
+
+  <p class="text-center text-sm text-muted">
+    Already have an account?
+    <a routerLink="/login" class="link text-brand">Login</a>
+  </p>
+</div>
