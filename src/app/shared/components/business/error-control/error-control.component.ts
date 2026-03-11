@@ -7,8 +7,8 @@ import { AbstractControl } from '@angular/forms';
   templateUrl: './error-control.component.html',
 })
 export class ErrorControlComponent {
-  @Input() control!: AbstractControl | null;
-  @Input() messages: Record<string, string> = {};
+  @Input({ required: true }) control!: AbstractControl | null;
+  @Input({ required: true }) messages!: Record<string, string>;
 
   get errorKeys() {
     return this.control?.errors ? Object.keys(this.control.errors) : [];

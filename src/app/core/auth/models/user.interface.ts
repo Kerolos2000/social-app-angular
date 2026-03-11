@@ -1,4 +1,4 @@
-import { ApiSuccessResponse } from '../../../core/models/api-response.interface';
+import { ApiSuccessResponse } from '../../models/api-response.interface';
 
 export interface User {
   _id: string;

@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../core/environments/environment.development';
+import { environment } from '../../environments/environment';
 import { AuthSuccessResponse } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RegisterService {
+export class LoginService {
   private readonly http = inject(HttpClient);
 
-  register(data: Object) {
+  login(data: object) {
     return this.http.post<AuthSuccessResponse>(
-      `${environment.BASE_URL}/users/signup`,
+      `${environment.BASE_URL}/users/signin`,
       data,
     );
   }
