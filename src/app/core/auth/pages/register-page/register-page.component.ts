@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
+import { ROUTES } from '../../../constants/routes';
 import { RegisterService } from '../../services/register.service';
 
 @Component({
@@ -61,7 +62,7 @@ export class RegisterPageComponent {
         console.log(res);
 
         this.loading = false;
-        this.router.navigate(['/login']);
+        this.router.navigate([ROUTES.LOGIN]);
       },
       error: (err) => {
         console.log(err);

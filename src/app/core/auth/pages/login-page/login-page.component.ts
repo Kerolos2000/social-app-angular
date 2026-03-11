@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
+import { ROUTES } from '../../../constants/routes';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -38,7 +39,7 @@ export class LoginPageComponent {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('user', JSON.stringify(res.data.user));
         this.loading = false;
-        this.router.navigate(['/feed']);
+        this.router.navigate([ROUTES.FEEDS]);
       },
       error: (err: HttpErrorResponse) => {
         this.formError = err.error.message;
