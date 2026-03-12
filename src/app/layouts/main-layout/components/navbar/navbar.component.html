@@ -1,0 +1,33 @@
+<nav class="sticky top-0 z-50 border-b border-border backdrop-blur-xl">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-3 py-2">
+    <a routerLink="/feed" class="flex items-center gap-2">
+      <img src="logo.png" alt="Logo" width="32" height="32" />
+      <span class="hidden text-lg font-bold sm:block">Route Posts</span>
+    </a>
+    <section class="flex items-center gap-1 rounded-md bg-muted p-1">
+      @for (link of links; track link.routerLink) {
+        <a
+          class="nav-link-inactive"
+          routerLinkActive="nav-link-active"
+          [routerLink]="link.routerLink"
+        >
+          <i [class]="link.icon"></i>
+          <span class="hidden sm:block">
+            {{ link.label }}
+          </span>
+        </a>
+      }
+    </section>
+    <button class="btn-ghost-outline">
+      <img
+        class="aspect-square size-7 rounded-md"
+        alt="kerolos"
+        src="https://pub-3cba56bacf9f4965bbb0989e07dada12.r2.dev/linkedPosts/1773183873309-031e5314-4228-47bd-b69a-b861609f8469-images.webp"
+      />
+      <span class="hidden max-w-32 truncate text-sm font-medium md:block"
+        >kerolos</span
+      >
+      <i class="fas fa-caret-down"></i>
+    </button>
+  </div>
+</nav>

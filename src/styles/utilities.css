@@ -1,5 +1,33 @@
+@utility badge {
+  @apply inline-flex items-center justify-center rounded-full size-5 text-xs font-medium;
+}
+
+@utility badge-primary {
+  @apply badge bg-brand text-brand-soft;
+}
+
+@utility badge-secondary {
+  @apply badge bg-neutral-secondary-medium text-body;
+}
+
+@utility badge-success {
+  @apply badge bg-success text-success-soft;
+}
+
+@utility badge-danger {
+  @apply badge bg-danger text-danger-soft;
+}
+
+@utility badge-warning {
+  @apply badge bg-warning text-warning-soft;
+}
+
+@utility badge-dark {
+  @apply badge bg-dark text-dark-soft;
+}
+
 @utility btn {
-  @apply box-border border font-medium leading-5 rounded-md text-sm px-4 py-2 focus:outline-none shadow-xs will-change-auto transition duration-300 ease-in-out cursor-pointer inline-flex items-center justify-center gap-2;
+  @apply box-border border border-border font-medium leading-5 rounded-md text-sm px-4 py-2 focus:outline-none shadow-xs will-change-auto transition duration-300 ease-in-out cursor-pointer inline-flex items-center justify-center gap-2;
 
   &:disabled {
     @apply opacity-50 cursor-not-allowed;
@@ -93,4 +121,16 @@
 
 @utility card-error {
   @apply w-full text-center border border-danger rounded-md p-2 bg-danger-soft shadow-sm flex flex-col;
+}
+
+@utility nav-link {
+  @apply cursor-pointer relative flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all;
+}
+
+@utility nav-link-active {
+  @apply nav-link bg-background text-foreground hover:bg-background/80;
+}
+
+@utility nav-link-inactive {
+  @apply nav-link hover:bg-background/60 text-foreground;
 }

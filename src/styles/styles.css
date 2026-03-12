@@ -15,6 +15,13 @@
   --color-brand: var(--color-sky-700);
   --color-brand-medium: var(--color-sky-200);
   --color-brand-strong: var(--color-sky-800);
+
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-body: #0f172a;
+  --color-muted: #ebebeb;
+
+  --color-border: #e5e7eb;
 }
 
 @layer utilities {
