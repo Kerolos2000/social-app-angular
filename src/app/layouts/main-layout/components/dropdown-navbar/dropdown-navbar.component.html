@@ -1,0 +1,46 @@
+<div
+  id="dropdown-navbar"
+  class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-64"
+>
+  <div class="p-2">
+    <div
+      class="flex items-center px-2 p-2 space-x-1 text-sm bg-neutral-secondary-strong rounded"
+    >
+      <img
+        class="w-8 h-8 rounded-full"
+        src="https://pub-3cba56bacf9f4965bbb0989e07dada12.r2.dev/linkedPosts/1773183873309-031e5314-4228-47bd-b69a-b861609f8469-images.webp"
+        alt="Rounded avatar"
+      />
+      <div class="text-sm">
+        <div class="font-medium text-heading">kerolos</div>
+        <div class="truncate text-body">cagy@mailinator.com</div>
+      </div>
+    </div>
+  </div>
+
+  <ul
+    class="px-2 pb-2 text-sm text-body font-medium"
+    aria-labelledby="dropdownAvatarButton"
+  >
+    <li>
+      <a routerLink="/login" class="nav-link hover:bg-neutral-secondary-soft">
+        <i class="fa-regular fa-user w-4 me-1"></i>
+        Account
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/" class="nav-link hover:bg-neutral-secondary-soft">
+        <i class="fa-solid fa-sliders w-4 me-1"></i>
+        Settings
+      </a>
+    </li>
+
+    <li class="border-t border-default-medium pt-1">
+      <a routerLink="/" class="nav-link text-danger hover:bg-danger-soft">
+        <i class="fa-solid fa-right-from-bracket w-4 me-1"></i>
+        Sign out
+      </a>
+    </li>
+  </ul>
+</div>
