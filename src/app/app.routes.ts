@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { anonymousGuard } from './core/auth/guards/anonymous-guard';
+import { protectedGuard } from './core/auth/guards/protected-guard';
 import { LoginPageComponent } from './core/auth/pages/login-page/login-page.component';
 import { RegisterPageComponent } from './core/auth/pages/register-page/register-page.component';
 import { FeedsComponent } from './features/feeds/feeds/feeds.component';
@@ -14,6 +16,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [protectedGuard],
     children: [
       {
         path: 'feeds',
@@ -24,6 +27,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AuthLayoutComponent,
+    canActivate: [anonymousGuard],
     children: [
       {
         path: 'login',
