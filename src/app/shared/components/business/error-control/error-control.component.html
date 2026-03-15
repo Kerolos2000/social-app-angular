@@ -1,5 +1,5 @@
 @if (control?.touched && control?.errors) {
   @for (key of errorKeys; track key) {
-    <p class="error">{{ messages[key] }}</p>
+    <p class="text-error">{{ messages[key] }}</p>
   }
 }

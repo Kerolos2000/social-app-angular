@@ -1,3 +1,5 @@
+/* BADGE */
+
 @utility badge {
   @apply inline-flex items-center justify-center rounded-full size-5 text-xs font-medium;
 }
@@ -25,6 +27,8 @@
 @utility badge-dark {
   @apply badge bg-dark text-dark-soft;
 }
+
+/* BUTTON */
 
 @utility btn {
   @apply box-border border border-border font-medium leading-5 rounded-md text-sm px-4 py-2 focus:outline-none shadow-xs will-change-auto transition duration-300 ease-in-out cursor-pointer inline-flex items-center justify-center gap-2;
@@ -99,21 +103,17 @@
   @apply btn text-heading bg-transparent border-default hover:bg-neutral-secondary-medium;
 }
 
+/* TEXT */
+
 @utility link {
   @apply cursor-pointer font-semibold hover:underline hover:underline-offset-2;
 }
 
-@utility input {
-  @apply block w-full ps-9 pe-3 h-10 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-md focus:border-brand focus-visible:outline-none shadow-xs placeholder:text-body will-change-auto transition duration-300 ease-in-out;
-}
-
-@utility input-icon {
-  @apply absolute top-5 -translate-y-1/2 flex items-center ps-3 pointer-events-none text-body;
-}
-
-@utility error {
+@utility text-error {
   @apply text-danger text-sm;
 }
+
+/* CARD */
 
 @utility card {
   @apply w-full border border-brand-medium rounded-md p-6 bg-white shadow-sm flex flex-col;
@@ -122,6 +122,8 @@
 @utility card-error {
   @apply w-full text-center border border-danger rounded-md p-2 bg-danger-soft shadow-sm flex flex-col;
 }
+
+/* NAV */
 
 @utility nav-link {
   @apply cursor-pointer relative flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all;
@@ -133,4 +135,18 @@
 
 @utility nav-link-inactive {
   @apply nav-link hover:bg-background/60 text-foreground;
+}
+
+/* FORM */
+
+@utility input {
+  @apply block w-full ps-9 pe-3 h-10 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-md focus:border-brand focus-visible:outline-none shadow-xs placeholder:text-body will-change-auto transition duration-300 ease-in-out;
+}
+
+@utility input-icon {
+  @apply absolute top-5 -translate-y-1/2 flex items-center ps-3 pointer-events-none text-body;
+}
+
+@utility input-field {
+  @apply relative flex flex-col gap-1;
 }

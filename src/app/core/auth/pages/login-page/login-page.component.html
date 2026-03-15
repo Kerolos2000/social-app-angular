@@ -6,7 +6,7 @@
     [formGroup]="loginForm"
     class="flex flex-col gap-4"
   >
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-user"></i>
 
       <input
@@ -25,7 +25,7 @@
       />
     </div>
 
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-key"></i>
 
       <input
@@ -54,7 +54,7 @@
 
     @if (formError) {
       <div class="card-error">
-        <p class="error">{{ formError }}</p>
+        <p class="text-error">{{ formError }}</p>
       </div>
     }
   </form>

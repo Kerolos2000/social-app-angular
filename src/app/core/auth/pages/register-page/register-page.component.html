@@ -6,7 +6,7 @@
     [formGroup]="registerForm"
     class="flex flex-col gap-4"
   >
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-user"></i>
       <input
         type="text"
@@ -22,7 +22,7 @@
       />
     </div>
 
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-at"></i>
       <input
         type="text"
@@ -40,7 +40,7 @@
       />
     </div>
 
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-envelope"></i>
       <input
         type="email"
@@ -57,7 +57,7 @@
       />
     </div>
 
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-cake-candles"></i>
       <input type="date" class="input" formControlName="dateOfBirth" />
       <app-error-control
@@ -68,7 +68,7 @@
       />
     </div>
 
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-venus-mars"></i>
       <select class="input" formControlName="gender">
         <option value="">Select gender</option>
@@ -83,7 +83,7 @@
       />
     </div>
 
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-key"></i>
       <input
         type="password"
@@ -99,7 +99,7 @@
       />
     </div>
 
-    <div class="relative flex flex-col gap-1">
+    <div class="input-field">
       <i class="input-icon fa-solid fa-lock"></i>
       <input
         type="password"
@@ -127,7 +127,7 @@
 
     @if (formError) {
       <div class="card-error">
-        <p class="error">{{ formError }}</p>
+        <p class="text-error">{{ formError }}</p>
       </div>
     }
   </form>
