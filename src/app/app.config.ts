@@ -9,8 +9,15 @@ import {
   withViewTransitions,
 } from '@angular/router';
 
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
+import { errorInterceptor } from './core/interceptors/error-interceptor';
+import { headerInterceptor } from './core/interceptors/header-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +32,10 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions(),
       // withHashLocation(),
     ),
-    provideHttpClient(withFetch()),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([headerInterceptor, errorInterceptor]),
+    ),
+    provideToastr(),
   ],
 };

@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -21,7 +20,6 @@ export class LoginPageComponent {
   private readonly loginService: LoginService = inject(LoginService);
   private readonly router: Router = inject(Router);
 
-  formError: string = '';
   loading: boolean = false;
 
   loginForm: FormGroup = this.formBuilder.group({
@@ -32,7 +30,6 @@ export class LoginPageComponent {
   loginSubmit() {
     if (this.loginForm.invalid) return;
     this.loading = true;
-    this.formError = '';
 
     this.loginService.login(this.loginForm.value).subscribe({
       next: (res) => {
@@ -41,10 +38,7 @@ export class LoginPageComponent {
         this.loading = false;
         this.router.navigate([ROUTES.FEEDS]);
       },
-      error: (err: HttpErrorResponse) => {
-        this.formError = err.error.message;
-        this.loading = false;
-      },
+      error: () => (this.loading = false),
     });
   }
 }

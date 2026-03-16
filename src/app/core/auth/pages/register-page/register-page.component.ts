@@ -22,7 +22,6 @@ export class RegisterPageComponent {
   private readonly router: Router = inject(Router);
 
   loading: boolean = false;
-  formError: string = '';
 
   registerForm: FormGroup = this.formBuilder.group(
     {
@@ -55,7 +54,6 @@ export class RegisterPageComponent {
   registerSubmit() {
     if (this.registerForm.invalid) return;
     this.loading = true;
-    this.formError = '';
 
     this.registerService.register(this.registerForm.value).subscribe({
       next: (res) => {
@@ -64,12 +62,7 @@ export class RegisterPageComponent {
         this.loading = false;
         this.router.navigate([ROUTES.LOGIN]);
       },
-      error: (err) => {
-        console.log(err);
-
-        this.formError = err.error.message;
-        this.loading = false;
-      },
+      error: () => (this.loading = false),
     });
   }
 }
