@@ -11,7 +11,8 @@ import { ROUTES } from '../../../../core/constants/routes';
 export class DropdownNavbarComponent {
   private readonly loginService = inject(LoginService);
 
-  protected readonly ROUTES = ROUTES;
+  ROUTES = ROUTES;
+  user = this.loginService.user;
 
   logout() {
     this.loginService.logout();

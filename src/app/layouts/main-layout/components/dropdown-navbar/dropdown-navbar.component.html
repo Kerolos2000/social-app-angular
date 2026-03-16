@@ -8,12 +8,14 @@
     >
       <img
         class="w-8 h-8 rounded-full"
-        src="https://pub-3cba56bacf9f4965bbb0989e07dada12.r2.dev/linkedPosts/1773183873309-031e5314-4228-47bd-b69a-b861609f8469-images.webp"
-        alt="Rounded avatar"
+        [src]="user?.photo"
+        [alt]="user?.name"
       />
       <div class="text-sm">
-        <div class="font-medium text-heading">kerolos</div>
-        <div class="truncate text-muted">cagy@mailinator.com</div>
+        <div class="font-medium text-heading">{{ user?.name }}</div>
+        <div class="truncate text-muted">
+          {{ user?.username || user?.email }}
+        </div>
       </div>
     </div>
   </div>

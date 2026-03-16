@@ -6,9 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
-import { ROUTES } from '../../../constants/routes';
 import { RegisterService } from '../../services/register.service';
 
 @Component({
@@ -19,7 +18,6 @@ import { RegisterService } from '../../services/register.service';
 export class RegisterPageComponent {
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly registerService: RegisterService = inject(RegisterService);
-  private readonly router: Router = inject(Router);
 
   loading: boolean = false;
 
@@ -56,12 +54,7 @@ export class RegisterPageComponent {
     this.loading = true;
 
     this.registerService.register(this.registerForm.value).subscribe({
-      next: (res) => {
-        console.log(res);
-
-        this.loading = false;
-        this.router.navigate([ROUTES.LOGIN]);
-      },
+      next: () => (this.loading = false),
       error: () => (this.loading = false),
     });
   }

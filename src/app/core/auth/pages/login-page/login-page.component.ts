@@ -5,9 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
-import { ROUTES } from '../../../constants/routes';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -18,7 +17,6 @@ import { LoginService } from '../../services/login.service';
 export class LoginPageComponent {
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly loginService: LoginService = inject(LoginService);
-  private readonly router: Router = inject(Router);
 
   loading: boolean = false;
 
@@ -32,12 +30,7 @@ export class LoginPageComponent {
     this.loading = true;
 
     this.loginService.login(this.loginForm.value).subscribe({
-      next: (res) => {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.user));
-        this.loading = false;
-        this.router.navigate([ROUTES.FEEDS]);
-      },
+      next: () => (this.loading = false),
       error: () => (this.loading = false),
     });
   }

@@ -18,15 +18,19 @@
         </a>
       }
     </section>
-    <button id="dropdownNavbarButton" data-dropdown-toggle="dropdown-navbar" class="btn-ghost-outline">
+    <button
+      id="dropdownNavbarButton"
+      data-dropdown-toggle="dropdown-navbar"
+      class="btn-ghost-outline"
+    >
       <img
         class="aspect-square size-7 rounded-md"
-        alt="kerolos"
-        src="https://pub-3cba56bacf9f4965bbb0989e07dada12.r2.dev/linkedPosts/1773183873309-031e5314-4228-47bd-b69a-b861609f8469-images.webp"
+        [alt]="user?.name"
+        [src]="user?.photo"
       />
-      <span class="hidden max-w-32 truncate text-sm font-medium md:block"
-        >kerolos</span
-      >
+      <span class="hidden max-w-32 truncate text-sm font-medium md:block">{{
+        user?.name
+      }}</span>
       <i class="fas fa-caret-down"></i>
     </button>
   </div>

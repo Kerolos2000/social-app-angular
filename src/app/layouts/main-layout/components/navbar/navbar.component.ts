@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { initFlowbite } from 'flowbite';
+import { LoginService } from '../../../../core/auth/services/login.service';
 import { ROUTES } from '../../../../core/constants/routes';
 import { DropdownNavbarComponent } from '../dropdown-navbar/dropdown-navbar.component';
 
@@ -10,6 +11,8 @@ import { DropdownNavbarComponent } from '../dropdown-navbar/dropdown-navbar.comp
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
+  private readonly loginService = inject(LoginService);
+
   links: {
     label: string;
     icon: string;
@@ -31,6 +34,8 @@ export class NavbarComponent implements OnInit {
       routerLink: ROUTES.NOTIFICATIONS,
     },
   ];
+
+  user = this.loginService.user;
 
   ngOnInit(): void {
     initFlowbite();

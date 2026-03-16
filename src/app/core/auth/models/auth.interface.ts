@@ -1,13 +1,5 @@
+import { User } from '../../../shared/models/user.interface';
 import { ApiSuccessResponse } from '../../models/api-response.interface';
-
-export interface User {
-  _id: string;
-  name: string;
-  email: string;
-  photo: string;
-  username?: string;
-  cover: string | null;
-}
 
 export interface AuthSuccessData {
   token: string;
