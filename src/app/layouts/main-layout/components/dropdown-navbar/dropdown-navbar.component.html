@@ -1,10 +1,10 @@
 <div
   id="dropdown-navbar"
-  class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-64"
+  class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-md w-64"
 >
   <div class="p-2">
     <div
-      class="flex items-center px-2 p-2 space-x-1 text-sm bg-neutral-secondary-strong rounded"
+      class="flex items-center px-2 p-2 space-x-2 text-sm bg-neutral-secondary-strong rounded"
     >
       <img
         class="w-8 h-8 rounded-full"
@@ -13,34 +13,37 @@
       />
       <div class="text-sm">
         <div class="font-medium text-heading">kerolos</div>
-        <div class="truncate text-body">cagy@mailinator.com</div>
+        <div class="truncate text-muted">cagy@mailinator.com</div>
       </div>
     </div>
   </div>
 
-  <ul
+  <div
     class="px-2 pb-2 text-sm text-body font-medium"
     aria-labelledby="dropdownAvatarButton"
   >
-    <li>
-      <a routerLink="/login" class="nav-link hover:bg-neutral-secondary-soft">
-        <i class="fa-regular fa-user w-4 me-1"></i>
-        Account
-      </a>
-    </li>
+    <a
+      [routerLink]="ROUTES.PROFILE"
+      class="nav-link hover:bg-neutral-secondary-soft"
+    >
+      <i class="fa-regular fa-user w-4 me-1"></i>
+      Account
+    </a>
 
-    <li>
-      <a routerLink="/" class="nav-link hover:bg-neutral-secondary-soft">
-        <i class="fa-solid fa-sliders w-4 me-1"></i>
-        Settings
-      </a>
-    </li>
+    <a
+      [routerLink]="ROUTES.SETTINGS"
+      class="nav-link hover:bg-neutral-secondary-soft"
+    >
+      <i class="fa-solid fa-sliders w-4 me-1"></i>
+      Settings
+    </a>
 
-    <li class="border-t border-default-medium pt-1">
-      <div (click)="logout()" class="nav-link text-danger hover:bg-danger-soft">
-        <i class="fa-solid fa-right-from-bracket w-4 me-1"></i>
-        Sign out
-      </div>
-    </li>
-  </ul>
+    <div
+      (click)="logout()"
+      class="nav-link text-danger hover:bg-danger-soft border-t border-default-medium mt-1"
+    >
+      <i class="fa-solid fa-right-from-bracket w-4 me-1"></i>
+      Sign out
+    </div>
+  </div>
 </div>

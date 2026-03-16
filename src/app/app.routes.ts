@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { anonymousGuard } from './core/auth/guards/anonymous-guard';
 import { protectedGuard } from './core/auth/guards/protected-guard';
-import { LoginPageComponent } from './core/auth/pages/login-page/login-page.component';
-import { RegisterPageComponent } from './core/auth/pages/register-page/register-page.component';
 import { FeedsComponent } from './features/feeds/feeds/feeds.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
@@ -31,11 +29,17 @@ export const routes: Routes = [
     children: [
       {
         path: 'login',
-        component: LoginPageComponent,
+        loadComponent: () =>
+          import('./core/auth/pages/login-page/login-page.component').then(
+            (c) => c.LoginPageComponent,
+          ),
       },
       {
         path: 'register',
-        component: RegisterPageComponent,
+        loadComponent: () =>
+          import('./core/auth/pages/register-page/register-page.component').then(
+            (c) => c.RegisterPageComponent,
+          ),
       },
     ],
   },
