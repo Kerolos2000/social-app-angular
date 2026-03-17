@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { User } from '../../../shared/models/user.interface';
@@ -14,11 +14,13 @@ export class LoginService {
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
 
-  private readonly userLocalStorage = localStorage.getItem('user');
+  private readonly storedUser = localStorage.getItem('user');
 
-  readonly user: User | null = this.userLocalStorage
-    ? JSON.parse(this.userLocalStorage)
-    : null;
+  private readonly _user = signal<User | null>(
+    this.storedUser ? JSON.parse(this.storedUser) : null,
+  );
+
+  readonly user = this._user.asReadonly();
 
   login(data: object) {
     return this.http
@@ -27,6 +29,7 @@ export class LoginService {
         tap((res) => {
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('user', JSON.stringify(res.data.user));
+          this._user.set(res.data.user);
           this.router.navigateByUrl(ROUTES.FEEDS);
         }),
       );
@@ -35,6 +38,7 @@ export class LoginService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    this._user.set(null);
     this.router.navigateByUrl(ROUTES.LOGIN);
   }
 }

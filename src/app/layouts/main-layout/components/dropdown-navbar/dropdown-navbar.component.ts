@@ -12,7 +12,7 @@ export class DropdownNavbarComponent {
   private readonly loginService = inject(LoginService);
 
   ROUTES = ROUTES;
-  user = this.loginService.user;
+  user = this.loginService.user();
 
   logout() {
     this.loginService.logout();

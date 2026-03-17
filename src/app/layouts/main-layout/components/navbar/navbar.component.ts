@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
     },
   ];
 
-  user = this.loginService.user;
+  user = this.loginService.user();
 
   ngOnInit(): void {
     initFlowbite();
