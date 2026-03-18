@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LoginService } from '../../../../core/auth/services/login.service';
-import { ROUTES } from '../../../../core/constants/routes';
+import { LoginService } from '../../../../../core/auth/services/login.service';
+import { ROUTES } from '../../../../../core/constants/routes';
 
 @Component({
   selector: 'app-dropdown-navbar',

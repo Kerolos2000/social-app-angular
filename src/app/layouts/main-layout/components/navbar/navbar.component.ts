@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { LoginService } from '../../../../core/auth/services/login.service';
 import { ROUTES } from '../../../../core/constants/routes';
-import { DropdownNavbarComponent } from '../dropdown-navbar/dropdown-navbar.component';
+import { DropdownNavbarComponent } from './dropdown-navbar/dropdown-navbar.component';
 
 @Component({
   selector: 'app-navbar',

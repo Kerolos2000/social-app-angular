@@ -1,0 +1,16 @@
+<div class="bg-white border border-border rounded-xl p-2 shadow-sm w-full">
+  <nav class="flex flex-col gap-1">
+    @for (item of filters; track item.label) {
+      <a
+        class="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold transition-all duration-200 cursor-pointer hover:bg-disabled"
+        [routerLink]="[ROUTES.FEEDS]"
+        [queryParams]="item.queryParams"
+        routerLinkActive="bg-brand-soft text-brand"
+        [routerLinkActiveOptions]="{ queryParams: 'exact', exact: true }"
+      >
+        <i class="fa-solid" [class]="item.icon"></i>
+        <span>{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+</div>

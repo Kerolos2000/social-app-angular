@@ -1,2 +1,27 @@
 <app-navbar />
-<router-outlet />
+
+<main class="relative mx-auto max-w-7xl p-4">
+  <div class="grid gap-4 xl:grid-cols-[240px_minmax(0,1fr)_300px]">
+    <aside class="hidden h-fit space-y-4 xl:sticky xl:top-18 xl:block">
+      <app-posts-filter />
+    </aside>
+
+    <section class="space-y-4 overflow-x-hidden">
+      <div class="xl:hidden space-y-4">
+        <app-posts-filter />
+      </div>
+
+      <router-outlet />
+    </section>
+
+    <aside class="hidden h-fit xl:sticky xl:top-18 xl:block">
+      <div
+        class="bg-white border border-border rounded-md p-2 shadow-sm w-full"
+      >
+        <h2 class="text-lg font-bold text-body text-center">
+          Suggested Friends
+        </h2>
+      </div>
+    </aside>
+  </div>
+</main>
