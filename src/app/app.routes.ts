@@ -2,6 +2,9 @@ import { Routes } from '@angular/router';
 import { anonymousGuard } from './core/auth/guards/anonymous-guard';
 import { protectedGuard } from './core/auth/guards/protected-guard';
 import { FeedsComponent } from './features/feeds/feeds.component';
+import { NotificationsComponent } from './features/notifications/notifications.component';
+import { ProfileComponent } from './features/profile/profile.component';
+import { SettingsComponent } from './features/settings/settings.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
@@ -19,6 +22,18 @@ export const routes: Routes = [
       {
         path: 'feeds',
         component: FeedsComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+      },
+      {
+        path: 'notifications',
+        component: NotificationsComponent,
       },
     ],
   },
