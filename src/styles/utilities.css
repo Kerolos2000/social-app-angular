@@ -48,7 +48,7 @@
 }
 
 @utility btn-primary {
-  @apply btn min-h-10 text-white bg-brand border-transparent hover:bg-brand-strong;
+  @apply btn text-white bg-brand border-transparent hover:bg-brand-strong;
 }
 
 @utility btn-secondary {
@@ -115,8 +115,12 @@
 
 /* CARD */
 
-@utility card {
+@utility card-primary {
   @apply w-full border border-brand-medium rounded-md p-6 bg-white shadow-sm flex flex-col;
+}
+
+@utility card-secondary {
+  @apply bg-white border border-border rounded-md p-2 shadow-sm w-full;
 }
 
 @utility card-error {
@@ -135,6 +139,10 @@
 
 @utility nav-link-inactive {
   @apply nav-link hover:bg-background/60 text-foreground;
+}
+
+@utility nav-link-hover {
+  @apply nav-link hover:bg-neutral-secondary-soft w-full;
 }
 
 /* FORM */
