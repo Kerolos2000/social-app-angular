@@ -1,0 +1,17 @@
+@if (previewUrl) {
+  <div class="relative card-secondary w-fit h-fit">
+    <img
+      [src]="previewUrl"
+      alt="Selected Image Preview"
+      class="min-h-36 max-h-64 object-contain"
+    />
+    <button
+      type="button"
+      (click)="onRemove()"
+      class="absolute top-2 right-2 btn-dark aspect-square w-8"
+      title="Remove Image"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+}

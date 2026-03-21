@@ -1,0 +1,32 @@
+<button
+  type="button"
+  data-dropdown-toggle="dropdown-privacy"
+  class="btn-ghost-outline px-2 py-1 text-xs"
+>
+  <i [class]="getSelectedOption()?.icon + ' text-brand'"></i>
+
+  <span>{{ getSelectedOption()?.label }}</span>
+  <i class="fa-solid fa-chevron-down text-2xs ms-1"></i>
+</button>
+
+<div
+  id="dropdown-privacy"
+  class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-md shadow-md w-48"
+>
+  @for (opt of options; track opt.value) {
+    <button
+      type="button"
+      (click)="setVisibility(opt.value)"
+      class="nav-link-hover flex justify-between"
+    >
+      <span class="flex items-center gap-2">
+        <i [class]="opt.icon + ' w-4 text-center'"></i>
+        {{ opt.label }}
+      </span>
+
+      @if (control.value === opt.value) {
+        <i class="fa-solid fa-check text-brand"></i>
+      }
+    </button>
+  }
+</div>

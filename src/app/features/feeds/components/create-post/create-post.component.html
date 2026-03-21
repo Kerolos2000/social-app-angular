@@ -1,0 +1,53 @@
+<form
+  [formGroup]="postForm"
+  (ngSubmit)="submitPost()"
+  class="card-secondary flex flex-col gap-2 p-4"
+>
+  <div class="flex items-start gap-2">
+    <img [src]="user?.photo" [alt]="user?.name" class="w-10 h-10 rounded-md" />
+
+    <div class="flex flex-col items-start relative w-full gap-1">
+      <span class="font-bold text-heading">{{ user?.name }}</span>
+
+      <app-dropdown-privacy [control]="getFormControl('visibility')" />
+    </div>
+  </div>
+
+  <textarea
+    formControlName="postText"
+    class="input ps-2 min-h-25"
+    placeholder="What's on your mind, {{ user?.name }}?"
+  ></textarea>
+
+  @if (selectedImage) {
+    <app-image-preview
+      [file]="selectedImage"
+      (remove)="removeImage()"
+    ></app-image-preview>
+  }
+
+  <div class="h-px w-full my-2 bg-border"></div>
+
+  <div class="flex items-center justify-between">
+    <button type="button" class="btn-ghost" (click)="fileInput.click()">
+      <i class="fa-regular fa-image text-success text-sm"></i>
+      <span>Photo</span>
+    </button>
+    <input
+      #fileInput
+      type="file"
+      class="hidden"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+    />
+
+    <button
+      type="submit"
+      [disabled]="!isPostValid"
+      class="btn-primary flex items-center gap-2"
+    >
+      Post
+      <i class="fa-regular fa-paper-plane text-sm"></i>
+    </button>
+  </div>
+</form>
