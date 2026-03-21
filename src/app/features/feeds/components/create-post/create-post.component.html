@@ -4,7 +4,7 @@
   class="card-secondary flex flex-col gap-2 p-4"
 >
   <div class="flex items-start gap-2">
-    <img [src]="user?.photo" [alt]="user?.name" class="w-10 h-10 rounded-md" />
+    <img [src]="user?.photo" [alt]="user?.name" class="avatar-lg" />
 
     <div class="flex flex-col items-start relative w-full gap-1">
       <span class="font-bold text-heading">{{ user?.name }}</span>
@@ -41,13 +41,9 @@
       accept="image/*"
     />
 
-    <button
-      type="submit"
-      [disabled]="!isPostValid"
-      class="btn-primary flex items-center gap-2"
-    >
+    <button type="submit" [disabled]="!isPostValid" class="btn-primary">
       Post
-      <i class="fa-regular fa-paper-plane text-sm"></i>
+      <i class="fa-regular fa-paper-plane text-xs"></i>
     </button>
   </div>
 </form>

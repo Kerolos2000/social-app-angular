@@ -1,15 +1,15 @@
 /* BADGE */
 
 @utility badge {
-  @apply inline-flex items-center justify-center rounded-full size-5 text-xs font-medium;
+  @apply inline-flex items-center justify-center rounded-md text-xs px-2 py-1 font-medium;
 }
 
 @utility badge-primary {
-  @apply badge bg-brand text-brand-soft;
+  @apply badge bg-brand-soft text-brand;
 }
 
 @utility badge-secondary {
-  @apply badge bg-neutral-secondary-medium text-body;
+  @apply badge bg-muted/75 text-gray-600;
 }
 
 @utility badge-success {
@@ -103,6 +103,14 @@
   @apply btn text-heading bg-transparent border-default hover:bg-neutral-secondary-medium;
 }
 
+@utility btn-sm {
+  @apply px-1 py-0.5 text-xs;
+}
+
+@utility btn-md {
+  @apply px-2 py-1 text-xs;
+}
+
 /* TEXT */
 
 @utility link {
@@ -157,4 +165,18 @@
 
 @utility input-field {
   @apply relative flex flex-col gap-1;
+}
+
+/* AVATAR */
+
+@utility avatar-sm {
+  @apply w-6 h-6 rounded-md;
+}
+
+@utility avatar-md {
+  @apply w-8 h-8 rounded-md;
+}
+
+@utility avatar-lg {
+  @apply w-10 h-10 rounded-md;
 }

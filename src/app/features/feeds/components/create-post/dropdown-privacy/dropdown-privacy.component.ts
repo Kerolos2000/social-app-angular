@@ -1,12 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Privacy } from '../../models/privacy.interface';
-
-type VisibilityOption = {
-  value: Privacy;
-  label: string;
-  icon: string;
-};
+import { VisibilityOption } from '../../../models/privacy.interface';
 
 @Component({
   selector: 'app-dropdown-privacy',

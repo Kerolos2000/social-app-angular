@@ -1,7 +1,7 @@
 <nav class="sticky top-0 z-50 border-b border-border backdrop-blur-xl">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-3 py-2">
     <a routerLink="/feed" class="flex items-center gap-2">
-      <img src="logo.png" alt="Logo" width="32" height="32" />
+      <img src="logo.png" alt="Logo" class="avatar-lg" />
       <span class="hidden text-lg font-bold sm:block">Route Posts</span>
     </a>
     <section class="flex items-center gap-1 rounded-md bg-muted p-1">
@@ -23,11 +23,7 @@
       data-dropdown-toggle="dropdown-navbar"
       class="btn-ghost-outline"
     >
-      <img
-        class="aspect-square size-7 rounded-md"
-        [alt]="user?.name"
-        [src]="user?.photo"
-      />
+      <img class="avatar-sm" [alt]="user?.name" [src]="user?.photo" />
       <span class="hidden max-w-32 truncate text-sm font-medium md:block">{{
         user?.name
       }}</span>
