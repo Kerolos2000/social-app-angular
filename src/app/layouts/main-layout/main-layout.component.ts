@@ -2,10 +2,16 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PostsFilterComponent } from './components/posts-filter/posts-filter.component';
+import { SuggestedFriendsComponent } from './components/suggested-friends/suggested-friends.component';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [NavbarComponent, RouterOutlet, PostsFilterComponent],
+  imports: [
+    NavbarComponent,
+    RouterOutlet,
+    PostsFilterComponent,
+    SuggestedFriendsComponent,
+  ],
   templateUrl: './main-layout.component.html',
 })
 export class MainLayoutComponent {}
