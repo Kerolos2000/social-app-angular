@@ -19,6 +19,7 @@
     "@angular/router": "^20.3.18",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "@tailwindcss/postcss": "^4.2.2",
+    "@tanstack/angular-query-experimental": "^5.94.5",
     "flowbite": "^4.0.1",
     "ngx-toastr": "^20.0.5",
     "postcss": "^8.5.8",

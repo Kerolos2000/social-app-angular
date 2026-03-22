@@ -1,4 +1,9 @@
 import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
@@ -8,12 +13,10 @@ import {
   withInMemoryScrolling,
   withViewTransitions,
 } from '@angular/router';
-
 import {
-  provideHttpClient,
-  withFetch,
-  withInterceptors,
-} from '@angular/common/http';
+  provideTanStackQuery,
+  QueryClient,
+} from '@tanstack/angular-query-experimental';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 import { errorInterceptor } from './core/interceptors/error-interceptor';
@@ -36,6 +39,7 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       withInterceptors([headerInterceptor, errorInterceptor]),
     ),
+    provideTanStackQuery(new QueryClient()),
     provideToastr(),
   ],
 };
