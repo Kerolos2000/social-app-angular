@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { SuggestedFriend } from '../../../../../features/feeds/models/suggested-friends.interface';
 import { ImgFallbackDirective } from '../../../../../shared/directives/img-fallback.directive';
+import { SuggestedFriend } from '../../../models/suggested-friends.interface';
 
 @Component({
   selector: 'app-suggested-friend-card',

@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { ApiSuccessResponse } from '../../../../core/models/api-response.interface';
-import { SuggestedFriendsResponse } from '../../../../features/feeds/models/suggested-friends.interface';
-import { SuggestedFriendsService } from '../../../../features/feeds/services/suggested-friends.service';
+import { SuggestedFriendsResponse } from '../../models/suggested-friends.interface';
+import { SuggestedFriendsService } from '../../services/suggested-friends.service';
 import { SuggestedFriendCardSkeletonComponent } from './suggested-friend-card/suggested-friend-card-skeleton/suggested-friend-card-skeleton.component';
 import { SuggestedFriendCardComponent } from './suggested-friend-card/suggested-friend-card.component';
 
