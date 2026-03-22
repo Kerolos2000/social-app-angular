@@ -1,27 +1,23 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { SuggestedFriend } from '../../../../features/feeds/models/suggested-friends.interface';
+import { Component, inject } from '@angular/core';
+import { injectQuery } from '@tanstack/angular-query-experimental';
+import { ApiSuccessResponse } from '../../../../core/models/api-response.interface';
+import { SuggestedFriendsResponse } from '../../../../features/feeds/models/suggested-friends.interface';
 import { SuggestedFriendsService } from '../../../../features/feeds/services/suggested-friends.service';
-import { ImgFallbackDirective } from '../../../../shared/directives/img-fallback.directive';
+import { SuggestedFriendCardSkeletonComponent } from './suggested-friend-card/suggested-friend-card-skeleton/suggested-friend-card-skeleton.component';
+import { SuggestedFriendCardComponent } from './suggested-friend-card/suggested-friend-card.component';
 
 @Component({
   selector: 'app-suggested-friends',
-  imports: [ImgFallbackDirective],
+  imports: [SuggestedFriendCardComponent, SuggestedFriendCardSkeletonComponent],
   templateUrl: './suggested-friends.component.html',
 })
-export class SuggestedFriendsComponent implements OnInit {
+export class SuggestedFriendsComponent {
   private readonly suggestedFriendsService = inject(SuggestedFriendsService);
 
-  suggestedFriends: SuggestedFriend[] = [];
-
-  getSuggestedFriends() {
-    this.suggestedFriendsService.getSuggestedFriends().subscribe({
-      next: (res) => {
-        this.suggestedFriends = res.data.suggestions;
-      },
-    });
-  }
-
-  ngOnInit(): void {
-    this.getSuggestedFriends();
-  }
+  query = injectQuery(() => ({
+    queryKey: ['suggested-friends'],
+    queryFn: () => this.suggestedFriendsService.getSuggestedFriends(),
+    select: (res: ApiSuccessResponse<SuggestedFriendsResponse>) =>
+      res.data.suggestions,
+  }));
 }
