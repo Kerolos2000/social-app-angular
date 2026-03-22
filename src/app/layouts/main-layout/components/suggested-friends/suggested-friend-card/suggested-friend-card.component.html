@@ -1,0 +1,40 @@
+<div class="card-secondary">
+  <div class="flex items-start gap-2">
+    <img
+      [src]="friend.photo"
+      appImgFallback="avatar-image-broken.png"
+      [alt]="friend.name"
+      class="avatar-lg"
+    />
+
+    <div class="flex-1 min-w-0 flex flex-col gap-2">
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex flex-col min-w-0">
+          <span class="text-sm font-bold text-heading truncate leading-tight">
+            {{ friend.name }}
+          </span>
+
+          @if (friend.username) {
+            <span class="text-xs text-muted truncate leading-tight">
+              @{{ friend.username }}
+            </span>
+          }
+        </div>
+
+        <button class="btn-primary btn-md">
+          <i class="fa-solid fa-user-plus text-2xs"></i>
+          Follow
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="badge-secondary">
+          {{ friend.followersCount }} followers
+        </span>
+        <span class="badge-primary">
+          {{ friend.mutualFollowersCount }} mutual
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
