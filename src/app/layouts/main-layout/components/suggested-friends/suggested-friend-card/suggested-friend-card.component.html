@@ -28,12 +28,16 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <span class="badge-secondary">
-          {{ friend.followersCount }} followers
-        </span>
-        <span class="badge-primary">
-          {{ friend.mutualFollowersCount }} mutual
-        </span>
+        @if (friend.followersCount) {
+          <span class="badge-secondary">
+            {{ friend.followersCount }} followers
+          </span>
+        }
+        @if (friend.mutualFollowersCount) {
+          <span class="badge-primary">
+            {{ friend.mutualFollowersCount }} mutual
+          </span>
+        }
       </div>
     </div>
   </div>

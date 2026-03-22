@@ -44,7 +44,7 @@
     </div>
 
     <button
-      [attr.data-loading]="loading"
+      [attr.data-loading]="mutation.isPending()"
       type="submit"
       class="btn-primary w-full"
       [disabled]="loginForm.invalid"

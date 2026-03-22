@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { lastValueFrom, tap } from 'rxjs';
 import { User } from '../../../shared/models/user.interface';
 import { ROUTES } from '../../constants/routes';
 import { environment } from '../../environments/environment';
@@ -23,16 +23,18 @@ export class LoginService {
   readonly user = this._user.asReadonly();
 
   login(data: object) {
-    return this.http
-      .post<AuthSuccessResponse>(`${environment.BASE_URL}/users/signin`, data)
-      .pipe(
-        tap((res) => {
-          localStorage.setItem('token', res.data.token);
-          localStorage.setItem('user', JSON.stringify(res.data.user));
-          this._user.set(res.data.user);
-          this.router.navigateByUrl(ROUTES.FEEDS);
-        }),
-      );
+    return lastValueFrom(
+      this.http
+        .post<AuthSuccessResponse>(`${environment.BASE_URL}/users/signin`, data)
+        .pipe(
+          tap((res) => {
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+            this._user.set(res.data.user);
+            this.router.navigateByUrl(ROUTES.FEEDS);
+          }),
+        ),
+    );
   }
 
   logout() {

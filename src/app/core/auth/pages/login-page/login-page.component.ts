@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { injectMutation } from '@tanstack/angular-query-experimental';
 import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
 import { LoginService } from '../../services/login.service';
 
@@ -18,7 +19,9 @@ export class LoginPageComponent {
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly loginService: LoginService = inject(LoginService);
 
-  loading: boolean = false;
+  mutation = injectMutation(() => ({
+    mutationFn: (data: object) => this.loginService.login(data),
+  }));
 
   loginForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -27,11 +30,7 @@ export class LoginPageComponent {
 
   loginSubmit() {
     if (this.loginForm.invalid) return;
-    this.loading = true;
 
-    this.loginService.login(this.loginForm.value).subscribe({
-      next: () => (this.loading = false),
-      error: () => (this.loading = false),
-    });
+    this.mutation.mutate(this.loginForm.value);
   }
 }

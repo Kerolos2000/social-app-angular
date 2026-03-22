@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { injectMutation } from '@tanstack/angular-query-experimental';
 import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
 import { RegisterService } from '../../services/register.service';
 
@@ -19,7 +20,9 @@ export class RegisterPageComponent {
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly registerService: RegisterService = inject(RegisterService);
 
-  loading: boolean = false;
+  mutation = injectMutation(() => ({
+    mutationFn: (data: object) => this.registerService.register(data),
+  }));
 
   registerForm: FormGroup = this.formBuilder.group(
     {
@@ -51,11 +54,7 @@ export class RegisterPageComponent {
 
   registerSubmit() {
     if (this.registerForm.invalid) return;
-    this.loading = true;
 
-    this.registerService.register(this.registerForm.value).subscribe({
-      next: () => (this.loading = false),
-      error: () => (this.loading = false),
-    });
+    this.mutation.mutate(this.registerForm.value);
   }
 }
