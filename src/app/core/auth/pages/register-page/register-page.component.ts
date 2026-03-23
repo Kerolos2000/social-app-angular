@@ -9,11 +9,17 @@ import {
 import { RouterLink } from '@angular/router';
 import { injectMutation } from '@tanstack/angular-query-experimental';
 import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
+import { ButtonComponent } from '../../../../shared/components/business/button/button.component';
 import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'app-register-page',
-  imports: [ReactiveFormsModule, ErrorControlComponent, RouterLink],
+  imports: [
+    ReactiveFormsModule,
+    ErrorControlComponent,
+    RouterLink,
+    ButtonComponent,
+  ],
   templateUrl: './register-page.component.html',
 })
 export class RegisterPageComponent {

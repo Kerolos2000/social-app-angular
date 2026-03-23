@@ -41,9 +41,15 @@
       accept="image/*"
     />
 
-    <button type="submit" [disabled]="!isPostValid" class="btn-primary">
+    <button
+      appButton
+      [icon]="'fa-regular fa-paper-plane text-xs'"
+      type="submit"
+      [isLoading]="false"
+      [disabled]="!isPostValid"
+      class="btn-primary"
+    >
       Post
-      <i class="fa-regular fa-paper-plane text-xs"></i>
     </button>
   </div>
 </form>
