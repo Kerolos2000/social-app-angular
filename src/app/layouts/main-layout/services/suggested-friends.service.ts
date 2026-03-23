@@ -18,4 +18,13 @@ export class SuggestedFriendsService {
       ),
     );
   }
+
+  toggleFollowFriend(userId: string) {
+    return lastValueFrom(
+      this.http.put<ApiSuccessResponse<SuggestedFriendsResponse>>(
+        `${environment.BASE_URL}/users/${userId}/follow`,
+        null,
+      ),
+    );
+  }
 }

@@ -1,4 +1,4 @@
-<div class="card-secondary">
+<div class="card-secondary max-w-full">
   <div class="flex items-start gap-2">
     <img
       [src]="friend.photo"
@@ -10,7 +10,9 @@
     <div class="flex-1 min-w-0 flex flex-col gap-2">
       <div class="flex items-center justify-between gap-2">
         <div class="flex flex-col min-w-0">
-          <span class="text-sm font-bold text-heading truncate leading-tight">
+          <span
+            class="text-sm font-bold text-heading truncate leading-tight max-w-30"
+          >
             {{ friend.name }}
           </span>
 
@@ -21,8 +23,13 @@
           }
         </div>
 
-        <button class="btn-primary btn-md">
-          <i class="fa-solid fa-user-plus text-2xs"></i>
+        <button
+          appButton
+          [icon]="'fa-solid fa-user-plus text-2xs'"
+          (click)="mutation.mutate(friend._id)"
+          [isLoading]="mutation.isPending()"
+          class="btn-primary btn-md"
+        >
           Follow
         </button>
       </div>
