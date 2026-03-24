@@ -33,6 +33,6 @@
     "@angular/cli": "^20.3.21",
     "@angular/compiler-cli": "^20.3.18",
     "git-cz": "^4.9.0",
-    "typescript": "~6.0.2"
+    "typescript": "^5.9.3"
   }
 }
