@@ -12,7 +12,7 @@ export class PostsFilterComponent {
   filters = [
     { label: 'Feed', icon: 'fa-house', queryParams: {} },
     { label: 'My Posts', icon: 'fa-file-lines', queryParams: { filter: 'me' } },
-    { label: 'Community', icon: 'fa-users', queryParams: { filter: 'community' } },
+    { label: 'Community', icon: 'fa-users', queryParams: { filter: 'all' } },
     { label: 'Saved', icon: 'fa-bookmark', queryParams: { filter: 'saved' } },
   ];
 }
