@@ -102,6 +102,10 @@
   @apply px-2 py-1 text-xs;
 }
 
+@utility btn-icon {
+  @apply btn-sm aspect-square;
+}
+
 /* TEXT */
 
 @utility link {

@@ -19,10 +19,7 @@ export interface Post {
   likes: string[];
 }
 
-export interface PostFeedResponse {
-  posts?: Post[];
-  bookmarks?: Post[];
-}
+export type PostFeedResponse = { posts: Post[] } | { bookmarks: Post[] };
 
 export interface PostCommentResponse {
   comments: Comment[];
