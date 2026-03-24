@@ -1,0 +1,14 @@
+<div class="flex flex-col gap-2">
+  <p class="text-sm">
+    {{ body() }}
+  </p>
+  @if (image()) {
+    <div class="rounded-md overflow-hidden w-full aspect-video">
+      <img
+        [src]="image()"
+        class="w-full h-full object-contain"
+        alt="post image"
+      />
+    </div>
+  }
+</div>

@@ -1,0 +1,24 @@
+<div class="flex gap-2">
+  <img [src]="user().photo" class="avatar-md" [alt]="user().name" />
+  <div class="card-secondary flex flex-col gap-2">
+    <textarea
+      [formControl]="commentControl"
+      class="input ps-2 min-h-25"
+      [placeholder]="'Write a comment as ' + user().name + '...'"
+      (keydown.enter)="submit($event)"
+    ></textarea>
+    <div class="flex items-center justify-between">
+      <button class="btn-ghost text-emerald-600 btn-icon">
+        <i class="fa-regular fa-image"></i>
+      </button>
+
+      <button
+        (click)="submit()"
+        [disabled]="!commentControl.valid"
+        class="btn-primary btn-icon"
+      >
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>

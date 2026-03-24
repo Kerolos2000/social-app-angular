@@ -1,0 +1,45 @@
+<div class="flex flex-col gap-2">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div
+        class="flex items-center justify-center rounded-full bg-brand text-white w-5 h-5 text-[8px] border-2 border-white shadow-sm"
+      >
+        <i class="fa-solid fa-thumbs-up"></i>
+      </div>
+      <span class="text-xs text-muted font-medium"
+        >{{ likesCount() }} likes</span
+      >
+    </div>
+    <div class="flex items-center gap-3 text-xs text-muted font-medium">
+      <span>{{ commentsCount() }} comments</span>
+      <span>0 shares</span>
+      <button class="link">View details</button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-2">
+    <button
+      (click)="onLike()"
+      [disabled]="likeMutation.isPending()"
+      class="btn btn-ghost"
+    >
+      <i
+        class="fa-thumbs-up text-lg"
+        [class]="
+          isLiked() || likeMutation.isPending()
+            ? 'fa-solid text-brand'
+            : 'fa-regular'
+        "
+      ></i>
+      <span class="text-xs font-semibold">Like</span>
+    </button>
+    <button (click)="onCommentClick.emit()" class="btn btn-ghost">
+      <i class="fa-regular fa-comment text-lg"></i>
+      <span class="text-xs font-semibold">Comment</span>
+    </button>
+    <button class="btn btn-ghost">
+      <i class="fa-regular fa-share-from-square text-lg"></i>
+      <span class="text-xs font-semibold">Share</span>
+    </button>
+  </div>
+</div>

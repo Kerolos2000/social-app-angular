@@ -1,0 +1,44 @@
+<div class="flex flex-col gap-2">
+  <div class="flex items-center gap-2">
+    <h5 class="text-sm font-bold text-heading">Comments</h5>
+    <span
+      class="rounded-full bg-brand-soft text-brand text-xs font-bold px-1.5 py-0.5 shadow-sm"
+    >
+      {{ post().commentsCount }}
+    </span>
+  </div>
+
+  @if (!showAllComments()) {
+    @if (topComment()) {
+      <div class="flex flex-col gap-2 card-primary p-2">
+        <span
+          class="text-xs font-bold text-body-subtle uppercase tracking-wider"
+          >Top Comment</span
+        >
+        <app-comment-item [comment]="topComment()!" />
+      </div>
+
+      @if (post().commentsCount > 1) {
+        <button (click)="toggleShowAll()" class="text-xs text-start link">
+          View all {{ post().commentsCount }} comments
+        </button>
+      }
+    }
+  } @else {
+    @if (commentsQuery.isPending()) {
+      <div class="flex justify-center py-4">
+        <div
+          class="w-4 h-4 border-2 border-brand border-t-transparent rounded-full animate-spin"
+        ></div>
+      </div>
+    } @else {
+      @for (comment of allComments(); track comment._id) {
+        <app-comment-item [comment]="comment" />
+      }
+    }
+  }
+
+  @if (isInputVisible()) {
+    <app-comment-form [user]="user()" (onSubmit)="onCommentSubmit($event)" />
+  }
+</div>

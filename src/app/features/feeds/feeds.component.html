@@ -1,1 +1,16 @@
-<app-create-post />
+<div class="w-full flex flex-col gap-4">
+  <app-create-post />
+
+  <div class="flex flex-col gap-4">
+    @if (feedQuery.isPending()) {
+      <app-post-card-skeleton />
+    }
+    @for (post of posts(); track post._id) {
+      <app-post-card [post]="post" [user]="user()!" />
+    } @empty {
+      <app-empty-state
+        message="No posts yet. Follow people or bookmark posts!"
+      />
+    }
+  </div>
+</div>

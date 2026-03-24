@@ -1,0 +1,26 @@
+<div class="card-secondary p-4 flex flex-col gap-2">
+  <app-post-header
+    [user]="post().user"
+    [createdAt]="post().createdAt"
+    [privacy]="post().privacy"
+  />
+
+  <app-post-content [body]="post().body" [image]="post().image" />
+
+  <div class="flex flex-col gap-2">
+    <app-post-actions
+      [postId]="post().id"
+      [isLiked]="isLiked()"
+      [likesCount]="post().likesCount"
+      [commentsCount]="post().commentsCount"
+      (onCommentClick)="toggleCommentInput()"
+    />
+
+    <app-post-comments
+      [post]="post()"
+      [user]="user()"
+      [isInputVisible]="isCommentInputVisible()"
+      (onViewAll)="toggleCommentInput()"
+    />
+  </div>
+</div>

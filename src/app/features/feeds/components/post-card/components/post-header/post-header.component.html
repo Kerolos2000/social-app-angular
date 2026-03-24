@@ -1,0 +1,34 @@
+<div class="flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <img
+      appImgFallback="avatar-image-broken.png"
+      [src]="user.photo"
+      class="avatar-lg"
+      [alt]="user.name"
+    />
+    <div class="flex flex-col">
+      <h4 class="text-sm font-bold">
+        {{ user.name }}
+      </h4>
+      <div class="flex items-center gap-1 text-xs text-body-subtle">
+        @if (user.username) {
+          <span>{{ user.username }}</span>
+        }
+        <span>{{ createdAt | relativeTime }}</span>
+        -
+        <span class="flex items-center gap-1">
+          <i class="fa-solid fa-earth-americas text-xs"></i>
+          {{ privacy }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2">
+    <button class="btn-ghost btn-icon">
+      <i class="fa-regular fa-bookmark text-sm"></i>
+    </button>
+    <button class="btn-ghost btn-icon">
+      <i class="fa-solid fa-ellipsis text-sm"></i>
+    </button>
+  </div>
+</div>
