@@ -6,7 +6,6 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
     "commit": "git cz"
   },
   "private": true,
@@ -19,7 +18,7 @@
     "@angular/router": "^20.3.18",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "@tailwindcss/postcss": "^4.2.2",
-    "@tanstack/angular-query-experimental": "^5.94.5",
+    "@tanstack/angular-query-experimental": "^5.95.2",
     "date-fns": "^4.1.0",
     "flowbite": "^4.0.1",
     "ngx-toastr": "^20.0.5",
@@ -33,14 +32,7 @@
     "@angular/build": "^20.3.21",
     "@angular/cli": "^20.3.21",
     "@angular/compiler-cli": "^20.3.18",
-    "@types/jasmine": "~6.0.0",
     "git-cz": "^4.9.0",
-    "jasmine-core": "~6.1.0",
-    "karma": "~6.4.4",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.1",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.2.0",
-    "typescript": "~5.9.3"
+    "typescript": "~6.0.2"
   }
 }
