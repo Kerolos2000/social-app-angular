@@ -1,27 +1,69 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  injectMutation,
+  QueryClient,
+} from '@tanstack/angular-query-experimental';
+import { ButtonComponent } from '../../../../../../shared/components/business/button/button.component';
 import { User } from '../../../../../../shared/models/user.interface';
+import { PostService } from '../../../../services/post.service';
+import { ImagePreviewComponent } from '../../../create-post/image-preview/image-preview.component';
 
 @Component({
   selector: 'app-comment-form',
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    ImagePreviewComponent,
+    ButtonComponent,
+  ],
   templateUrl: './comment-form.component.html',
 })
 export class CommentFormComponent {
-  private readonly fb = inject(FormBuilder);
+  private readonly formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly postService = inject(PostService);
+  private readonly queryClient = inject(QueryClient);
+
   user = input.required<User>();
-  onSubmit = output<string>();
+  postId = input.required<string>();
+  commentAdded = output<void>();
 
-  commentControl = this.fb.control('', [
-    Validators.required,
-    Validators.minLength(1),
-  ]);
+  commentForm = this.formBuilder.group({
+    comment: ['', [Validators.required, Validators.minLength(1)]],
+    image: [null as File | null],
+  });
 
-  submit(event?: any) {
-    if (event && event.preventDefault) event.preventDefault();
-    if (this.commentControl.valid) {
-      this.onSubmit.emit(this.commentControl.value!);
-      this.commentControl.reset();
-    }
+  get selectedImage(): File | null {
+    return this.commentForm.get('image')?.value as File | null;
   }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.commentForm.patchValue({ image: input.files[0] });
+    }
+    input.value = '';
+  }
+
+  removeImage() {
+    this.commentForm.patchValue({ image: null });
+  }
+
+  mutation = injectMutation(() => ({
+    mutationFn: () =>
+      this.postService.createComment(
+        this.postId(),
+        this.commentForm.value.comment || '',
+        this.commentForm.value.image || undefined,
+      ),
+
+    onSuccess: () => {
+      this.commentForm.reset();
+      this.commentAdded.emit();
+      return this.queryClient.invalidateQueries({
+        queryKey: ['post-comments', this.postId()],
+      });
+    },
+  }));
 }

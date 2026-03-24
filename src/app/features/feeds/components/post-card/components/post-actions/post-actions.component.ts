@@ -1,7 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
 import {
   injectMutation,
-  injectQueryClient,
+  QueryClient,
 } from '@tanstack/angular-query-experimental';
 import { PostService } from '../../../../services/post.service';
 
@@ -11,7 +11,7 @@ import { PostService } from '../../../../services/post.service';
 })
 export class PostActionsComponent {
   private readonly postService = inject(PostService);
-  private readonly queryClient = injectQueryClient();
+  private readonly queryClient = inject(QueryClient);
 
   postId = input.required<string>();
   isLiked = input<boolean>(false);

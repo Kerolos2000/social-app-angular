@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'app-image-preview',
-  imports: [],
   templateUrl: './image-preview.component.html',
 })
 export class ImagePreviewComponent implements OnChanges {

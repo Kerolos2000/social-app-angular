@@ -50,11 +50,16 @@ export class PostService {
     );
   }
 
-  createComment(postId: string, commentBody: string) {
+  createComment(postId: string, commentBody: string, image?: File) {
+    const formData = new FormData();
+    formData.append('content', commentBody);
+    if (image) {
+      formData.append('image', image);
+    }
     return lastValueFrom(
       this.http.post<ApiSuccessResponse<Comment>>(
         `${environment.BASE_URL}/posts/${postId}/comments`,
-        { content: commentBody },
+        formData,
       ),
     );
   }

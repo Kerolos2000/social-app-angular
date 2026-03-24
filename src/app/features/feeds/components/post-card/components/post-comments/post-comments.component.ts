@@ -6,11 +6,7 @@ import {
   output,
   signal,
 } from '@angular/core';
-import {
-  injectMutation,
-  injectQuery,
-  injectQueryClient,
-} from '@tanstack/angular-query-experimental';
+import { injectQuery } from '@tanstack/angular-query-experimental';
 import { ApiSuccessResponse } from '../../../../../../core/models/api-response.interface';
 import { User } from '../../../../../../shared/models/user.interface';
 import { Post, PostCommentResponse } from '../../../../models/post.interface';
@@ -25,7 +21,6 @@ import { CommentItemComponent } from '../comment-item/comment-item.component';
 })
 export class PostCommentsComponent {
   private readonly postService = inject(PostService);
-  private readonly queryClient = injectQueryClient();
 
   post = input.required<Post>();
   user = input.required<User>();
@@ -41,16 +36,6 @@ export class PostCommentsComponent {
     enabled: this.showAllComments(),
   }));
 
-  createCommentMutation = injectMutation(() => ({
-    mutationFn: (body: string) =>
-      this.postService.createComment(this.post()._id, body),
-    onSuccess: () => {
-      this.queryClient.invalidateQueries({
-        queryKey: ['post-comments', this.post()._id],
-      });
-    },
-  }));
-
   topComment = computed(() => {
     return this.post().topComment;
   });
@@ -62,9 +47,5 @@ export class PostCommentsComponent {
   toggleShowAll() {
     this.showAllComments.set(true);
     this.onViewAll.emit();
-  }
-
-  onCommentSubmit(content: string) {
-    this.createCommentMutation.mutate(content);
   }
 }

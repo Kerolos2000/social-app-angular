@@ -39,6 +39,10 @@
   }
 
   @if (isInputVisible()) {
-    <app-comment-form [user]="user()" (onSubmit)="onCommentSubmit($event)" />
+    <app-comment-form
+      [user]="user()"
+      [postId]="post()._id"
+      (commentAdded)="showAllComments.set(true)"
+    />
   }
 </div>
