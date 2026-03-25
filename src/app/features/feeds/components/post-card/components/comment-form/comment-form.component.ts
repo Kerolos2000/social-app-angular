@@ -58,7 +58,12 @@ export class CommentFormComponent {
       const parentId = this.parentCommentId();
 
       if (parentId) {
-        return this.postService.createReply(this.postId(), parentId, content);
+        return this.postService.createReply(
+          this.postId(),
+          parentId,
+          content,
+          image || undefined,
+        );
       }
 
       return this.postService.createComment(

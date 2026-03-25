@@ -73,11 +73,16 @@ export class PostService {
     );
   }
 
-  createReply(postId: string, commentId: string, replyBody: string) {
+  createReply(postId: string, commentId: string, replyBody: string, image?: File) {
+    const formData = new FormData();
+    formData.append('content', replyBody);
+    if (image) {
+      formData.append('image', image);
+    }
     return lastValueFrom(
       this.http.post(
         `${environment.BASE_URL}/posts/${postId}/comments/${commentId}/replies`,
-        { content: replyBody },
+        formData,
       ),
     );
   }
