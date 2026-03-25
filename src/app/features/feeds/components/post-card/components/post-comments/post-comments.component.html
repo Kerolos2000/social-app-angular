@@ -1,9 +1,7 @@
 <div class="flex flex-col gap-2">
   <div class="flex items-center gap-2">
     <h5 class="text-sm font-bold text-heading">Comments</h5>
-    <span
-      class="rounded-full bg-brand-soft text-brand text-xs font-bold px-1.5 py-0.5 shadow-sm"
-    >
+    <span class="badge-primary btn-icon aspect-square">
       {{ post().commentsCount }}
     </span>
   </div>
@@ -15,7 +13,7 @@
           class="text-xs font-bold text-body-subtle uppercase tracking-wider"
           >Top Comment</span
         >
-        <app-comment-item [comment]="topComment()!" />
+        <app-comment-item [comment]="topComment()!" [user]="user()" />
       </div>
 
       @if (post().commentsCount > 1) {
@@ -33,7 +31,7 @@
       </div>
     } @else {
       @for (comment of allComments(); track comment._id) {
-        <app-comment-item [comment]="comment" />
+        <app-comment-item [comment]="comment" [user]="user()" />
       }
     }
   }

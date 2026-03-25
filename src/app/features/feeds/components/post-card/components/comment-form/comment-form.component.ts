@@ -27,6 +27,7 @@ export class CommentFormComponent {
 
   user = input.required<User>();
   postId = input.required<string>();
+  parentCommentId = input<string | null>(null);
   commentAdded = output<void>();
 
   commentForm = this.formBuilder.group({
@@ -51,19 +52,34 @@ export class CommentFormComponent {
   }
 
   mutation = injectMutation(() => ({
-    mutationFn: () =>
-      this.postService.createComment(
+    mutationFn: () => {
+      const content = this.commentForm.get('comment')?.value || '';
+      const image = this.selectedImage;
+      const parentId = this.parentCommentId();
+
+      if (parentId) {
+        return this.postService.createReply(this.postId(), parentId, content);
+      }
+
+      return this.postService.createComment(
         this.postId(),
-        this.commentForm.value.comment || '',
-        this.commentForm.value.image || undefined,
-      ),
+        content,
+        image || undefined,
+      );
+    },
 
     onSuccess: () => {
       this.commentForm.reset();
       this.commentAdded.emit();
-      return this.queryClient.invalidateQueries({
-        queryKey: ['post-comments', this.postId()],
-      });
+
+      return Promise.all([
+        this.queryClient.invalidateQueries({
+          queryKey: ['post-comments', this.postId()],
+        }),
+        this.queryClient.invalidateQueries({
+          queryKey: ['comment-replies', this.parentCommentId()],
+        }),
+      ]);
     },
   }));
 }

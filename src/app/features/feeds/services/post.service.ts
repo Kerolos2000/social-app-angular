@@ -6,6 +6,7 @@ import { ApiSuccessResponse } from '../../../core/models/api-response.interface'
 import {
   PostCommentResponse,
   PostFeedResponse,
+  PostReplyResponse,
 } from '../models/post.interface';
 
 @Injectable({
@@ -26,6 +27,14 @@ export class PostService {
     return lastValueFrom(
       this.http.get<ApiSuccessResponse<PostCommentResponse>>(
         `${environment.BASE_URL}/posts/${postId}/comments?page=${page}&limit=${limit}`,
+      ),
+    );
+  }
+
+  getReplies(postId: string, commentId: string) {
+    return lastValueFrom(
+      this.http.get<ApiSuccessResponse<PostReplyResponse>>(
+        `${environment.BASE_URL}/posts/${postId}/comments/${commentId}/replies`,
       ),
     );
   }

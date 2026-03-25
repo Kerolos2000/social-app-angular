@@ -4,37 +4,41 @@
   class="flex gap-2 w-full"
 >
   <img [src]="user().photo" class="avatar-md" [alt]="user().name" />
-  <div class="card-secondary flex flex-col gap-2 flex-1">
+  <div class="card-secondary flex flex-col gap-2 flex-1 p-2">
     <textarea
       formControlName="comment"
-      class="input ps-2 min-h-25"
-      [placeholder]="'Write a comment as ' + user().name + '...'"
+      class="input ps-2 min-h-25 border-none focus:ring-0"
+      [placeholder]="parentCommentId() ? 'Write a reply...' : 'Write a comment as ' + user().name + '...'"
     ></textarea>
 
-    @if (selectedImage) {
+    @if (selectedImage && !parentCommentId()) {
       <div class="px-2 pb-2">
         <app-image-preview [file]="selectedImage" (remove)="removeImage()" />
       </div>
     }
 
     <div class="flex items-center justify-between">
-      <div class="flex items-center gap-1">
-        <button
-          type="button"
-          (click)="fileInput.click()"
-          class="btn-ghost text-emerald-600 btn-icon"
-          title="Add image"
-        >
-          <i class="fa-regular fa-image"></i>
-        </button>
-        <input
-          #fileInput
-          type="file"
-          class="hidden"
-          accept="image/*"
-          (change)="onFileSelected($event)"
-        />
-      </div>
+      @if (!parentCommentId()) {
+        <div class="flex items-center gap-1">
+          <button
+            type="button"
+            (click)="fileInput.click()"
+            class="btn-ghost text-emerald-600 btn-icon"
+            title="Add image"
+          >
+            <i class="fa-regular fa-image"></i>
+          </button>
+          <input
+            #fileInput
+            type="file"
+            class="hidden"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+      } @else {
+        <div></div>
+      }
 
       <button
         appButton
@@ -42,8 +46,10 @@
         [disabled]="commentForm.invalid"
         type="submit"
         [icon]="'fa-solid fa-paper-plane'"
-        class="btn-primary btn-icon"
-      ></button>
+        class="btn-primary btn-sm"
+      >
+        Send
+      </button>
     </div>
   </div>
 </form>

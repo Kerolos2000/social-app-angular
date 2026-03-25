@@ -35,14 +35,27 @@ export interface Comment {
   parentComment?: string | null;
   likes: string[];
   replies?: Reply[];
+  repliesCount: number;
   id?: string;
+  isReply?: boolean;
 }
 
 export interface Reply {
   _id: string;
   content: string;
-  comment: string;
-  replyCreator: User;
+  commentCreator: User;
   createdAt: string;
   image?: string;
+  id?: string;
+  isReply?: boolean;
+  likes?: string[];
+  likesCount?: number;
+  parentComment?: string | null;
+  post: string;
+  repliesCount?: number;
+  replies?: Reply[];
+}
+
+export interface PostReplyResponse {
+  replies: Reply[];
 }
