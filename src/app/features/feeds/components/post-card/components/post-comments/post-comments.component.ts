@@ -13,10 +13,11 @@ import { Post, PostCommentResponse } from '../../../../models/post.interface';
 import { PostService } from '../../../../services/post.service';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
 import { CommentItemComponent } from '../comment-item/comment-item.component';
+import { CommentSkeletonComponent } from '../comment-skeleton/comment-skeleton.component';
 
 @Component({
   selector: 'app-post-comments',
-  imports: [CommentItemComponent, CommentFormComponent],
+  imports: [CommentItemComponent, CommentFormComponent, CommentSkeletonComponent],
   templateUrl: './post-comments.component.html',
 })
 export class PostCommentsComponent {

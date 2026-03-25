@@ -33,17 +33,21 @@
     <!-- Replies List -->
     @if (showReplies()) {
       @if (repliesQuery.isPending()) {
-        <div class="flex justify-center py-2">
-          <div
-            class="w-3 h-3 border-2 border-brand border-t-transparent rounded-full animate-spin"
-          ></div>
-        </div>
+        <app-comment-skeleton [count]="2" [isReply]="true" />
       } @else {
-        <div
-          class="flex flex-col gap-3 mt-3 border-l-2 border-border ml-2 pl-4"
-        >
+        <div class="flex flex-col gap-3 mt-3 ml-4">
           @for (reply of repliesQuery.data(); track reply._id) {
-            <app-comment-item [comment]="reply" [user]="user()" />
+            <div class="relative pl-5">
+              <div
+                class="absolute left-0 -top-3 w-0.5 bg-border"
+                [class.-bottom-3]="!$last"
+              ></div>
+              <div
+                class="absolute left-0 top-0 w-5 h-3 border-l-2 border-b-2 border-border/75 rounded-bl-xl border-spacing-0"
+              ></div>
+
+              <app-comment-item [comment]="reply" [user]="user()" />
+            </div>
           }
         </div>
       }

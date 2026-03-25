@@ -24,10 +24,8 @@
     }
   } @else {
     @if (commentsQuery.isPending()) {
-      <div class="flex justify-center py-4">
-        <div
-          class="w-4 h-4 border-2 border-brand border-t-transparent rounded-full animate-spin"
-        ></div>
+      <div class="py-4">
+        <app-comment-skeleton [count]="3" />
       </div>
     } @else {
       @for (comment of allComments(); track comment._id) {

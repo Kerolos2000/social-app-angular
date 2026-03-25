@@ -12,6 +12,7 @@ import {
 } from '../../../../models/post.interface';
 import { PostService } from '../../../../services/post.service';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
+import { CommentSkeletonComponent } from '../comment-skeleton/comment-skeleton.component';
 
 @Component({
   selector: 'app-comment-item',
@@ -19,6 +20,7 @@ import { CommentFormComponent } from '../comment-form/comment-form.component';
     RelativeTimePipe,
     ImgFallbackDirective,
     CommentFormComponent,
+    CommentSkeletonComponent,
     CommonModule,
   ],
   templateUrl: './comment-item.component.html',
