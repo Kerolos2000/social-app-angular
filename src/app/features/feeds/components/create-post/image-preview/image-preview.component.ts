@@ -1,36 +1,32 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-image-preview',
   templateUrl: './image-preview.component.html',
 })
-export class ImagePreviewComponent implements OnChanges {
-  @Input({ required: true }) file!: File;
-  @Output() remove = new EventEmitter<void>();
+export class ImagePreviewComponent {
+  file = input.required<File | null>();
+  remove = output<void>();
 
-  previewUrl: string | null = null;
+  previewUrl = signal<string | null>(null);
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['file'] && this.file) {
-      if (this.previewUrl) {
-        URL.revokeObjectURL(this.previewUrl);
+  constructor() {
+    effect((onCleanup) => {
+      const f = this.file();
+
+      if (!f) {
+        this.previewUrl.set(null);
+        return;
       }
-      this.previewUrl = URL.createObjectURL(this.file);
-    }
+
+      const url = URL.createObjectURL(f);
+      this.previewUrl.set(url);
+
+      onCleanup(() => URL.revokeObjectURL(url));
+    });
   }
 
   onRemove() {
-    if (this.previewUrl) {
-      URL.revokeObjectURL(this.previewUrl);
-      this.previewUrl = null;
-    }
     this.remove.emit();
   }
 }

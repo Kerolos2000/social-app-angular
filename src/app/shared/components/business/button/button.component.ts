@@ -1,17 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'button[appButton]',
   templateUrl: './button.component.html',
   host: {
-    '[type]': 'type',
-    '[disabled]': '(disabled || isLoading) || null',
+    '[type]': 'type()',
+    '[disabled]': '(disabled() || isLoading()) || null',
     class: 'btn flex items-center justify-center gap-2 cursor-pointer',
   },
 })
 export class ButtonComponent {
-  @Input({ required: true }) isLoading: boolean = false;
-  @Input() icon?: string;
-  @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  @Input() disabled: boolean = false;
+  isLoading = input<boolean>(false);
+  icon = input<string | undefined>();
+  type = input<'button' | 'submit' | 'reset'>('button');
+  disabled = input<boolean>(false);
 }

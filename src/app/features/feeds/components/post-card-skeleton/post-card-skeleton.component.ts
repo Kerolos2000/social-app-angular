@@ -1,13 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'app-post-card-skeleton',
   templateUrl: './post-card-skeleton.component.html',
 })
 export class PostCardSkeletonComponent {
-  @Input() count: number = 3;
-
-  get items() {
-    return Array.from({ length: this.count });
-  }
+  count = input<number>(3);
+  items = computed(() => Array.from({ length: this.count() }));
 }

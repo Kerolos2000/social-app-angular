@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'app-comment-skeleton',
@@ -6,10 +6,8 @@ import { Component, Input } from '@angular/core';
   templateUrl: './comment-skeleton.component.html',
 })
 export class CommentSkeletonComponent {
-  @Input() count: number = 3;
-  @Input() isReply: boolean = false;
+  count = input<number>(3);
+  isReply = input<boolean>(false);
 
-  get items() {
-    return Array.from({ length: this.count });
-  }
+  items = computed(() => Array.from({ length: this.count() }));
 }

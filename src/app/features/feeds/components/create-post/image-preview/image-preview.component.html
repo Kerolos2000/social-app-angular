@@ -1,7 +1,7 @@
-@if (previewUrl) {
+@if (previewUrl()) {
   <div class="relative card-secondary w-fit h-fit">
     <img
-      [src]="previewUrl"
+      [src]="previewUrl()"
       alt="Selected Image Preview"
       class="min-h-36 max-h-64 object-contain"
     />

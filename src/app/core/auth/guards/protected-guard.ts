@@ -6,10 +6,5 @@ export const protectedGuard: CanActivateFn = () => {
   const router = inject(Router);
   const token = localStorage.getItem('token');
 
-  if (!token) {
-    router.navigateByUrl(ROUTES.LOGIN);
-    return false;
-  }
-
-  return true;
+  return token ? true : router.parseUrl(ROUTES.LOGIN);
 };

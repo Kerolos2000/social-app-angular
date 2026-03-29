@@ -19,8 +19,8 @@ import { PostHeaderComponent } from './components/post-header/post-header.compon
 export class PostCardComponent {
   post = input.required<Post>();
   user = input.required<User>();
-  isCommentInputVisible = signal(false);
 
+  isCommentInputVisible = signal(false);
   isLiked = computed(() => {
     return this.post().likes?.includes(this.user()._id);
   });

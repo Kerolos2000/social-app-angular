@@ -16,7 +16,7 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    @for (stat of stats; track stat.label) {
+    @for (stat of stats(); track stat.label) {
       <div
         class="border border-brand-medium bg-brand-softer rounded-md p-4 transition-hover hover:shadow-md"
       >

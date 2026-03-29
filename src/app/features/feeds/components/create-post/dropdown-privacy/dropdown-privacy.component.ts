@@ -1,25 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
-import { VisibilityOption } from '../../../models/privacy.interface';
+import { startWith, switchMap } from 'rxjs';
+import {
+  VISIBILITY_OPTIONS,
+  VisibilityOption,
+} from '../../../models/privacy.interface';
 
 @Component({
   selector: 'app-dropdown-privacy',
   templateUrl: './dropdown-privacy.component.html',
 })
 export class DropdownPrivacyComponent {
-  @Input({ required: true }) control!: FormControl;
+  control = input.required<FormControl>();
 
-  options: VisibilityOption[] = [
-    { value: 'public', label: 'Public', icon: 'fa-solid fa-earth-americas' },
-    { value: 'following', label: 'Following', icon: 'fa-solid fa-user-group' },
-    { value: 'only_me', label: 'Private', icon: 'fa-solid fa-lock' },
-  ];
+  options = signal<VisibilityOption[]>(VISIBILITY_OPTIONS);
+
+  private controlValue = toSignal(
+    toObservable(this.control).pipe(
+      switchMap((ctrl) => ctrl.valueChanges.pipe(startWith(ctrl.value))),
+    ),
+  );
+
+  selectedOption = computed(() =>
+    this.options().find((o) => o.value === this.controlValue()),
+  );
 
   setVisibility(value: string) {
-    this.control.setValue(value);
-  }
-
-  getSelectedOption() {
-    return this.options.find((o) => o.value === this.control.value);
+    this.control().setValue(value);
   }
 }

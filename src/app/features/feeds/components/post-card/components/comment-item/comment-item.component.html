@@ -30,7 +30,7 @@
         <button (click)="toggleReplyForm()" class="link">Reply</button>
       }
     </div>
-    <!-- Replies List -->
+
     @if (showReplies()) {
       @if (repliesQuery.isPending()) {
         <app-comment-skeleton [count]="2" [isReply]="true" />
@@ -52,7 +52,7 @@
         </div>
       }
     }
-    <!-- View Replies Button -->
+
     @if (comment().repliesCount && comment().repliesCount! > 0) {
       <button
         (click)="toggleReplies()"

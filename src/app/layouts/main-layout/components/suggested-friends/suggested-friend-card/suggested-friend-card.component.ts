@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import {
   injectMutation,
   QueryClient,
@@ -14,7 +14,7 @@ import { SuggestedFriendsService } from '../../../services/suggested-friends.ser
   templateUrl: './suggested-friend-card.component.html',
 })
 export class SuggestedFriendCardComponent {
-  @Input({ required: true }) friend!: SuggestedFriend;
+  friend = input.required<SuggestedFriend>();
 
   private readonly suggestedFriendsService = inject(SuggestedFriendsService);
   private readonly queryClient = inject(QueryClient);

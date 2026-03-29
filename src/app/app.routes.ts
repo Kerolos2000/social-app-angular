@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { anonymousGuard } from './core/auth/guards/anonymous-guard';
 import { protectedGuard } from './core/auth/guards/protected-guard';
+import { ROUTES } from './core/constants/routes';
 import { FeedsComponent } from './features/feeds/feeds.component';
 import { NotificationsComponent } from './features/notifications/notifications.component';
 import { ProfileComponent } from './features/profile/profile.component';
@@ -11,7 +12,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: ROUTES.FEEDS,
     pathMatch: 'full',
   },
   {
@@ -20,19 +21,19 @@ export const routes: Routes = [
     canActivate: [protectedGuard],
     children: [
       {
-        path: 'feeds',
+        path: ROUTES.FEEDS,
         component: FeedsComponent,
       },
       {
-        path: 'profile',
+        path: ROUTES.PROFILE,
         component: ProfileComponent,
       },
       {
-        path: 'settings',
+        path: ROUTES.SETTINGS,
         component: SettingsComponent,
       },
       {
-        path: 'notifications',
+        path: ROUTES.NOTIFICATIONS,
         component: NotificationsComponent,
       },
     ],
@@ -43,14 +44,14 @@ export const routes: Routes = [
     canActivate: [anonymousGuard],
     children: [
       {
-        path: 'login',
+        path: ROUTES.LOGIN,
         loadComponent: () =>
           import('./core/auth/pages/login-page/login-page.component').then(
             (c) => c.LoginPageComponent,
           ),
       },
       {
-        path: 'register',
+        path: ROUTES.REGISTER,
         loadComponent: () =>
           import('./core/auth/pages/register-page/register-page.component').then(
             (c) => c.RegisterPageComponent,

@@ -6,11 +6,11 @@
     <div
       class="flex items-center p-2 space-x-2 text-sm bg-neutral-secondary-strong rounded-md"
     >
-      <img class="avatar-md" [src]="user?.photo" [alt]="user?.name" />
+      <img class="avatar-md" [src]="user()?.photo" [alt]="user()?.name" />
       <div class="text-sm">
-        <div class="font-medium text-heading">{{ user?.name }}</div>
+        <div class="font-medium text-heading">{{ user()?.name }}</div>
         <div class="truncate text-muted">
-          {{ user?.username || user?.email }}
+          {{ user()?.username || user()?.email }}
         </div>
       </div>
     </div>
@@ -20,12 +20,12 @@
     class="px-2 pb-2 text-sm text-body font-medium"
     aria-labelledby="dropdownAvatarButton"
   >
-    <a [routerLink]="ROUTES.PROFILE" class="nav-link-hover">
+    <a [routerLink]="ROUTES().PROFILE" class="nav-link-hover">
       <i class="fa-solid fa-user w-4 me-1"></i>
       Profile
     </a>
 
-    <a [routerLink]="ROUTES.SETTINGS" class="nav-link-hover">
+    <a [routerLink]="ROUTES().SETTINGS" class="nav-link-hover">
       <i class="fa-solid fa-sliders w-4 me-1"></i>
       Settings
     </a>

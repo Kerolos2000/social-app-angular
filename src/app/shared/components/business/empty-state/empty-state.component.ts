@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-empty-state',
@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './empty-state.component.html',
 })
 export class EmptyStateComponent {
-  @Input() icon: string = 'fa-regular fa-newspaper';
-  @Input() message: string = 'No data found';
+  icon = input<string>('fa-regular fa-newspaper');
+  message = input<string>('No data found');
 }

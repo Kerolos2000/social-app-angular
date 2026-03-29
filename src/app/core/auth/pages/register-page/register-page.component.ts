@@ -2,14 +2,13 @@ import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
-  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { injectMutation } from '@tanstack/angular-query-experimental';
-import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
 import { ButtonComponent } from '../../../../shared/components/business/button/button.component';
+import { ErrorControlComponent } from '../../../../shared/components/business/error-control/error-control.component';
 import { RegisterService } from '../../services/register.service';
 
 @Component({
@@ -23,14 +22,14 @@ import { RegisterService } from '../../services/register.service';
   templateUrl: './register-page.component.html',
 })
 export class RegisterPageComponent {
-  private readonly formBuilder: FormBuilder = inject(FormBuilder);
-  private readonly registerService: RegisterService = inject(RegisterService);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly registerService = inject(RegisterService);
 
   mutation = injectMutation(() => ({
     mutationFn: (data: object) => this.registerService.register(data),
   }));
 
-  registerForm: FormGroup = this.formBuilder.group(
+  registerForm = this.formBuilder.group(
     {
       name: ['', Validators.required],
       username: [
@@ -52,7 +51,6 @@ export class RegisterPageComponent {
 
     if (password !== rePassword && rePassword !== '') {
       group.get('rePassword')?.setErrors({ mismatch: true });
-
       return { mismatch: true };
     }
     return null;
@@ -60,7 +58,6 @@ export class RegisterPageComponent {
 
   registerSubmit() {
     if (this.registerForm.invalid) return;
-
     this.mutation.mutate(this.registerForm.value);
   }
 }

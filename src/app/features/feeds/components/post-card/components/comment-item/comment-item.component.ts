@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { ApiSuccessResponse } from '../../../../../../core/models/api-response.interface';
 import { ImgFallbackDirective } from '../../../../../../shared/directives/img-fallback.directive';
@@ -34,10 +34,12 @@ export class CommentItemComponent {
   showReplies = signal(false);
   showReplyForm = signal(false);
 
+  commentId = computed(() => this.comment()._id);
+  postId = computed(() => this.comment().post);
+
   repliesQuery = injectQuery(() => ({
-    queryKey: ['comment-replies', this.comment()._id],
-    queryFn: () =>
-      this.postService.getReplies(this.comment().post, this.comment()._id),
+    queryKey: ['comment-replies', this.commentId()],
+    queryFn: () => this.postService.getReplies(this.postId(), this.commentId()),
     select: (res: ApiSuccessResponse<PostReplyResponse>) => res.data.replies,
     enabled: this.showReplies(),
   }));

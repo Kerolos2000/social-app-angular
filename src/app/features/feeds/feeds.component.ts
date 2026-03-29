@@ -28,7 +28,7 @@ export class FeedsComponent {
   private readonly route = inject(ActivatedRoute);
 
   user = this.loginService.user;
-  queryParams = toSignal(this.route.queryParams, { initialValue: {} });
+  queryParams = toSignal(this.route.queryParams);
 
   feedQuery = injectQuery(() => {
     const params = this.queryParams() as any;

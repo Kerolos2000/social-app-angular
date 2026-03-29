@@ -23,7 +23,7 @@ export class LoginService {
     this.storedUser ? JSON.parse(this.storedUser) : null,
   );
 
-  readonly user = this._user.asReadonly();
+  user = this._user.asReadonly();
 
   login(data: object) {
     return lastValueFrom(

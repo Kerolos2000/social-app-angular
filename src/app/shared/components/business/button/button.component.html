@@ -1,8 +1,8 @@
-@if (isLoading) {
+@if (isLoading()) {
   <span
     class="w-3 h-3 border-2 border-brand-softer border-t-transparent rounded-full animate-spin"
   ></span>
-} @else if (icon) {
-  <i [class]="icon"></i>
+} @else if (icon()) {
+  <i [class]="icon()"></i>
 }
 <ng-content />

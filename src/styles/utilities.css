@@ -119,11 +119,11 @@
 /* CARD */
 
 @utility card-primary {
-  @apply w-full border border-brand-medium rounded-md p-6 bg-white shadow-sm flex flex-col;
+  @apply w-full border border-brand-medium rounded-md p-6 bg-brand-softer/20 shadow-sm flex flex-col;
 }
 
 @utility card-secondary {
-  @apply bg-white border border-border rounded-md p-2 shadow-sm w-full;
+  @apply bg-background border border-border rounded-md p-2 shadow-sm w-full;
 }
 
 @utility card-error {

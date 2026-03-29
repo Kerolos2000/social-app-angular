@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LoginService } from '../../../../../core/auth/services/login.service';
 import { ROUTES } from '../../../../../core/constants/routes';
@@ -11,8 +11,8 @@ import { ROUTES } from '../../../../../core/constants/routes';
 export class DropdownNavbarComponent {
   private readonly loginService = inject(LoginService);
 
-  ROUTES = ROUTES;
-  user = this.loginService.user();
+  ROUTES = signal(ROUTES).asReadonly();
+  user = this.loginService.user;
 
   logout() {
     this.loginService.logout();

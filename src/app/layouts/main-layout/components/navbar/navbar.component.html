@@ -5,7 +5,7 @@
       <span class="hidden text-lg font-bold sm:block">Route Posts</span>
     </a>
     <section class="flex items-center gap-1 rounded-md bg-muted p-1">
-      @for (link of links; track link.routerLink) {
+      @for (link of links(); track link.routerLink) {
         <a
           class="nav-link-inactive"
           routerLinkActive="nav-link-active"
@@ -23,9 +23,9 @@
       data-dropdown-toggle="dropdown-navbar"
       class="btn-ghost-outline"
     >
-      <img class="avatar-sm" [alt]="user?.name" [src]="user?.photo" />
+      <img class="avatar-sm" [src]="user()?.photo" [alt]="user()?.name" />
       <span class="hidden max-w-32 truncate text-sm font-medium md:block">{{
-        user?.name
+        user()?.name
       }}</span>
       <i class="fas fa-caret-down"></i>
     </button>

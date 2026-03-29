@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   injectMutation,
@@ -35,26 +35,27 @@ export class CommentFormComponent {
     image: [null as File | null],
   });
 
-  get selectedImage(): File | null {
-    return this.commentForm.get('image')?.value as File | null;
-  }
+  selectedImage = signal<File | null>(null);
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.commentForm.patchValue({ image: input.files[0] });
+      const file = input.files[0];
+      this.commentForm.patchValue({ image: file });
+      this.selectedImage.set(file);
     }
     input.value = '';
   }
 
   removeImage() {
     this.commentForm.patchValue({ image: null });
+    this.selectedImage.set(null);
   }
 
   mutation = injectMutation(() => ({
     mutationFn: () => {
       const content = this.commentForm.get('comment')?.value || '';
-      const image = this.selectedImage;
+      const image = this.selectedImage();
       const parentId = this.parentCommentId();
 
       if (parentId) {
@@ -75,6 +76,7 @@ export class CommentFormComponent {
 
     onSuccess: () => {
       this.commentForm.reset();
+      this.selectedImage.set(null);
       this.commentAdded.emit();
 
       return Promise.all([

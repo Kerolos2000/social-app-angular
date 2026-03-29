@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -26,7 +26,7 @@ export class CreatePostComponent implements OnInit {
   private readonly loginService = inject(LoginService);
   private readonly fb = inject(FormBuilder);
 
-  user = this.loginService.user();
+  user = this.loginService.user;
 
   postForm: FormGroup = this.fb.group({
     postText: [''],
@@ -37,31 +37,31 @@ export class CreatePostComponent implements OnInit {
     image: [null],
   });
 
+  selectedImage = signal<File | null>(null);
+
   getFormControl(name: string): FormControl {
     return this.postForm.get(name) as FormControl;
   }
 
   get isPostValid(): boolean {
     const text = this.postForm.get('postText')?.value;
-    const img = this.postForm.get('image')?.value;
+    const img = this.selectedImage();
     return !!(text?.trim() || img);
   }
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.postForm.patchValue({ image: input.files[0] });
+      const file = input.files[0];
+      this.postForm.patchValue({ image: file });
+      this.selectedImage.set(file);
     }
-    // Reset file input value so selecting the same file triggers change again
     input.value = '';
-  }
-
-  get selectedImage(): File | null {
-    return this.postForm.get('image')?.value;
   }
 
   removeImage() {
     this.postForm.patchValue({ image: null });
+    this.selectedImage.set(null);
   }
 
   submitPost() {
@@ -69,20 +69,17 @@ export class CreatePostComponent implements OnInit {
 
     const formData = new FormData();
     const postText = this.postForm.get('postText')?.value;
-    if (postText) {
-      formData.append('postText', postText);
-    }
+    if (postText) formData.append('postText', postText);
 
     formData.append('visibility', this.postForm.get('visibility')?.value);
 
-    const imageInput = this.postForm.get('image')?.value;
-    if (imageInput) {
-      formData.append('image', imageInput);
-    }
+    const imageInput = this.selectedImage();
+    if (imageInput) formData.append('image', imageInput);
 
     console.log('🚀 ~ formData:', this.postForm.value);
 
-    this.postForm.reset({ visibility: 'public' });
+    this.postForm.reset({ visibility: this.postForm.get('visibility')?.value });
+    this.selectedImage.set(null);
   }
 
   ngOnInit(): void {

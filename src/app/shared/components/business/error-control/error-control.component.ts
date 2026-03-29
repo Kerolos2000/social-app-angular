@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 @Component({
@@ -7,10 +7,11 @@ import { AbstractControl } from '@angular/forms';
   templateUrl: './error-control.component.html',
 })
 export class ErrorControlComponent {
-  @Input({ required: true }) control!: AbstractControl | null;
-  @Input({ required: true }) messages!: Record<string, string>;
+  control = input.required<AbstractControl | null>();
+  messages = input.required<Record<string, string>>();
 
-  get errorKeys() {
-    return this.control?.errors ? Object.keys(this.control.errors) : [];
-  }
+  errorKeys = computed(() => {
+    const ctrl = this.control();
+    return ctrl?.errors ? Object.keys(ctrl.errors) : [];
+  });
 }

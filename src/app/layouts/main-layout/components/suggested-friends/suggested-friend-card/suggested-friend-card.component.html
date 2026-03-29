@@ -1,9 +1,9 @@
 <div class="card-secondary max-w-full">
   <div class="flex items-start gap-2">
     <img
-      [src]="friend.photo"
+      [src]="friend().photo"
       appImgFallback="avatar-image-broken.png"
-      [alt]="friend.name"
+      [alt]="friend().name"
       class="avatar-lg"
     />
 
@@ -13,12 +13,12 @@
           <span
             class="text-sm font-bold text-heading truncate leading-tight max-w-30"
           >
-            {{ friend.name }}
+            {{ friend().name }}
           </span>
 
-          @if (friend.username) {
+          @if (friend().username) {
             <span class="text-xs text-muted truncate leading-tight">
-              @{{ friend.username }}
+              @{{ friend().username }}
             </span>
           }
         </div>
@@ -26,7 +26,7 @@
         <button
           appButton
           [icon]="'fa-solid fa-user-plus text-2xs'"
-          (click)="mutation.mutate(friend._id)"
+          (click)="mutation.mutate(friend()._id)"
           [isLoading]="mutation.isPending()"
           class="btn-primary btn-md"
         >
@@ -35,14 +35,14 @@
       </div>
 
       <div class="flex items-center gap-2">
-        @if (friend.followersCount) {
+        @if (friend().followersCount) {
           <span class="badge-secondary">
-            {{ friend.followersCount }} followers
+            {{ friend().followersCount }} followers
           </span>
         }
-        @if (friend.mutualFollowersCount) {
+        @if (friend().mutualFollowersCount) {
           <span class="badge-primary">
-            {{ friend.mutualFollowersCount }} mutual
+            {{ friend().mutualFollowersCount }} mutual
           </span>
         }
       </div>

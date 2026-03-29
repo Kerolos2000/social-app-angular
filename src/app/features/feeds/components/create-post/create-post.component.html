@@ -4,10 +4,10 @@
   class="card-secondary flex flex-col gap-2 p-4"
 >
   <div class="flex items-start gap-2">
-    <img [src]="user?.photo" [alt]="user?.name" class="avatar-lg" />
+    <img [src]="user()?.photo" [alt]="user()?.name" class="avatar-lg" />
 
     <div class="flex flex-col items-start relative w-full gap-1">
-      <span class="font-bold text-heading">{{ user?.name }}</span>
+      <span class="font-bold text-heading">{{ user()?.name }}</span>
 
       <app-dropdown-privacy [control]="getFormControl('visibility')" />
     </div>
@@ -16,12 +16,12 @@
   <textarea
     formControlName="postText"
     class="input ps-2 min-h-25"
-    placeholder="What's on your mind, {{ user?.name }}?"
+    placeholder="What's on your mind, {{ user()?.name }}?"
   ></textarea>
 
-  @if (selectedImage) {
+  @if (selectedImage()) {
     <app-image-preview
-      [file]="selectedImage"
+      [file]="selectedImage()"
       (remove)="removeImage()"
     ></app-image-preview>
   }
