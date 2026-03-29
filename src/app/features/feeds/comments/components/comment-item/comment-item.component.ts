@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
-import { ApiSuccessResponse } from '../../../../../../core/models/api-response.interface';
-import { ImgFallbackDirective } from '../../../../../../shared/directives/img-fallback.directive';
-import { User } from '../../../../../../shared/models/user.interface';
-import { RelativeTimePipe } from '../../../../../../shared/pipes/relative-time.pipe';
+import { ApiSuccessResponse } from '../../../../../core/models/api-response.interface';
+import { ImgFallbackDirective } from '../../../../../shared/directives/img-fallback.directive';
+import { User } from '../../../../../shared/models/user.interface';
+import { RelativeTimePipe } from '../../../../../shared/pipes/relative-time.pipe';
 import {
   Comment,
   PostReplyResponse,
   Reply,
-} from '../../../../models/post.interface';
-import { PostService } from '../../../../services/post.service';
+} from '../../models/comment.interface';
+import { CommentService } from '../../services/comment.service';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
 import { CommentSkeletonComponent } from '../comment-skeleton/comment-skeleton.component';
 
@@ -26,7 +26,7 @@ import { CommentSkeletonComponent } from '../comment-skeleton/comment-skeleton.c
   templateUrl: './comment-item.component.html',
 })
 export class CommentItemComponent {
-  private readonly postService = inject(PostService);
+  private readonly commentService = inject(CommentService);
 
   comment = input.required<Comment | Reply>();
   user = input.required<User>();
@@ -39,7 +39,7 @@ export class CommentItemComponent {
 
   repliesQuery = injectQuery(() => ({
     queryKey: ['comment-replies', this.commentId()],
-    queryFn: () => this.postService.getReplies(this.postId(), this.commentId()),
+    queryFn: () => this.commentService.getReplies(this.postId(), this.commentId()),
     select: (res: ApiSuccessResponse<PostReplyResponse>) => res.data.replies,
     enabled: this.showReplies(),
   }));

@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
-import { ImgFallbackDirective } from '../../../../../../shared/directives/img-fallback.directive';
-import { User } from '../../../../../../shared/models/user.interface';
-import { RelativeTimePipe } from '../../../../../../shared/pipes/relative-time.pipe';
+import { ImgFallbackDirective } from '../../../../../../../shared/directives/img-fallback.directive';
+import { User } from '../../../../../../../shared/models/user.interface';
+import { RelativeTimePipe } from '../../../../../../../shared/pipes/relative-time.pipe';
 import { PRIVACY_CONFIG, Privacy } from '../../../../models/privacy.interface';
 
 @Component({

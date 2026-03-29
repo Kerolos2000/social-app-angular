@@ -5,10 +5,10 @@ import {
   injectMutation,
   QueryClient,
 } from '@tanstack/angular-query-experimental';
-import { ButtonComponent } from '../../../../../../shared/components/business/button/button.component';
-import { User } from '../../../../../../shared/models/user.interface';
-import { PostService } from '../../../../services/post.service';
-import { ImagePreviewComponent } from '../../../create-post/image-preview/image-preview.component';
+import { ButtonComponent } from '../../../../../shared/components/business/button/button.component';
+import { User } from '../../../../../shared/models/user.interface';
+import { CommentService } from '../../services/comment.service';
+import { ImagePreviewComponent } from '../../../posts/components/create-post/image-preview/image-preview.component';
 
 @Component({
   selector: 'app-comment-form',
@@ -22,7 +22,7 @@ import { ImagePreviewComponent } from '../../../create-post/image-preview/image-
 })
 export class CommentFormComponent {
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
-  private readonly postService = inject(PostService);
+  private readonly commentService = inject(CommentService);
   private readonly queryClient = inject(QueryClient);
 
   user = input.required<User>();
@@ -59,7 +59,7 @@ export class CommentFormComponent {
       const parentId = this.parentCommentId();
 
       if (parentId) {
-        return this.postService.createReply(
+        return this.commentService.createReply(
           this.postId(),
           parentId,
           content,
@@ -67,7 +67,7 @@ export class CommentFormComponent {
         );
       }
 
-      return this.postService.createComment(
+      return this.commentService.createComment(
         this.postId(),
         content,
         image || undefined,

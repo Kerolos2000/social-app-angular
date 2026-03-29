@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { anonymousGuard } from './core/auth/guards/anonymous-guard';
 import { protectedGuard } from './core/auth/guards/protected-guard';
 import { ROUTES } from './core/constants/routes';
-import { FeedsComponent } from './features/feeds/feeds.component';
+import { FeedsComponent } from './features/feeds/components/feeds.component';
 import { NotificationsComponent } from './features/notifications/notifications.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { SettingsComponent } from './features/settings/settings.component';

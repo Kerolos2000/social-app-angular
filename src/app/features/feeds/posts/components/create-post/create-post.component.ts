@@ -7,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { initFlowbite } from 'flowbite';
-import { LoginService } from '../../../../core/auth/services/login.service';
-import { ButtonComponent } from '../../../../shared/components/business/button/button.component';
+import { LoginService } from '../../../../../core/auth/services/login.service';
+import { ButtonComponent } from '../../../../../shared/components/business/button/button.component';
 import { DropdownPrivacyComponent } from './dropdown-privacy/dropdown-privacy.component';
 import { ImagePreviewComponent } from './image-preview/image-preview.component';
 

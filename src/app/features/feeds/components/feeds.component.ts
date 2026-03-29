@@ -1,16 +1,16 @@
 import { Component, computed, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
-import { LoginService } from '../../core/auth/services/login.service';
-import { ApiSuccessResponse } from '../../core/models/api-response.interface';
-import { CreatePostComponent } from './components/create-post/create-post.component';
-import { PostCardComponent } from './components/post-card/post-card.component';
-import { PostFeedResponse } from './models/post.interface';
-import { PostService } from './services/post.service';
+import { LoginService } from '../../../core/auth/services/login.service';
+import { ApiSuccessResponse } from '../../../core/models/api-response.interface';
+import { CreatePostComponent } from '../posts/components/create-post/create-post.component';
+import { PostCardComponent } from '../posts/components/post-card/post-card.component';
+import { PostCardSkeletonComponent } from '../posts/components/post-card-skeleton/post-card-skeleton.component';
+import { PostFeedResponse } from '../posts/models/post.interface';
+import { PostService } from '../posts/services/post.service';
 
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { EmptyStateComponent } from '../../shared/components/business/empty-state/empty-state.component';
-import { PostCardSkeletonComponent } from './components/post-card-skeleton/post-card-skeleton.component';
+import { EmptyStateComponent } from '../../../shared/components/business/empty-state/empty-state.component';
 
 @Component({
   selector: 'app-feeds',
