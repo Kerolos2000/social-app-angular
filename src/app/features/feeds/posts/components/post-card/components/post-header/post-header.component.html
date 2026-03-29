@@ -2,25 +2,25 @@
   <div class="flex items-start gap-3 min-w-0 flex-1">
     <img
       appImgFallback="avatar-image-broken.png"
-      [src]="user().photo"
+      [src]="post().user.photo"
       class="avatar-lg flex-none"
-      [alt]="user().name"
+      [alt]="post().user.name"
     />
     <div class="flex flex-col min-w-0 mt-0.5">
       <h4 class="text-sm font-bold truncate">
-        {{ user().name }}
+        {{ post().user.name }}
       </h4>
       <div
         class="flex items-center flex-wrap gap-x-1.5 gap-y-0.5 text-xs text-body-subtle"
       >
-        @if (user().username) {
+        @if (post().user.username) {
           <span class="truncate max-w-20 sm:max-w-30"
-            >@{{ user().username }}</span
+            >@{{ post().user.username }}</span
           >
           <span class="text-2xs opacity-60 flex-none">&bull;</span>
         }
         <span class="whitespace-nowrap shrink-0">{{
-          createdAt() | relativeTime
+          post().createdAt | relativeTime
         }}</span>
         <span class="text-2xs opacity-60 flex-none">&bull;</span>
         <span class="flex items-center gap-1 whitespace-nowrap shrink-0">
@@ -32,10 +32,19 @@
   </div>
 
   <div class="flex items-center gap-1 shrink-0">
-    <button class="btn-ghost btn-icon">
-      <i class="fa-regular fa-bookmark text-sm"></i>
-    </button>
-    <button class="btn-ghost btn-icon">
+    <button
+      appButton
+      [isLoading]="mutation.isPending()"
+      [disabled]="mutation.isPending()"
+      class="btn-ghost btn-icon"
+      [icon]="
+        post().bookmarked
+          ? 'fa-solid fa-bookmark text-sm'
+          : 'fa-regular fa-bookmark text-sm'
+      "
+      (click)="toggleBookmark('bookmark')"
+    ></button>
+    <button appButton class="btn-ghost btn-icon">
       <i class="fa-solid fa-ellipsis text-sm"></i>
     </button>
   </div>

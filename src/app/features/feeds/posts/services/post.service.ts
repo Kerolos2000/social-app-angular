@@ -25,7 +25,9 @@ export class PostService {
   }
 
   bookmarkPost(postId: string) {
-    return lastValueFrom(this.http.get(API_ENDPOINTS.POSTS.BOOKMARK(postId)));
+    return lastValueFrom(
+      this.http.put(API_ENDPOINTS.POSTS.BOOKMARK(postId), {}),
+    );
   }
 
   getBookmarks(limit: number = 10) {

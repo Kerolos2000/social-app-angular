@@ -63,7 +63,7 @@
 }
 
 @utility btn-ghost {
-  @apply btn text-heading bg-transparent border-transparent hover:bg-neutral-secondary-medium;
+  @apply btn text-heading bg-neutral-primary border-transparent hover:bg-neutral-secondary-medium;
 }
 
 @utility btn-primary-outline {

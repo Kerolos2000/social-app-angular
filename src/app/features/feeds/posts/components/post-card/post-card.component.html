@@ -1,9 +1,5 @@
 <div class="card-secondary p-4 flex flex-col gap-2">
-  <app-post-header
-    [user]="post().user"
-    [createdAt]="post().createdAt"
-    [privacy]="post().privacy"
-  />
+  <app-post-header [post]="post()" />
 
   <app-post-content [body]="post().body" [image]="post().image" />
 
