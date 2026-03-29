@@ -5,7 +5,7 @@ import { QueryClient } from '@tanstack/angular-query-experimental';
 import { lastValueFrom, tap } from 'rxjs';
 import { User } from '../../../shared/models/user.interface';
 import { ROUTES } from '../../constants/routes';
-import { environment } from '../../environments/environment';
+import { API_ENDPOINTS } from '../../constants/api';
 import { ApiSuccessResponse } from '../../models/api-response.interface';
 import { AuthSuccessData } from '../models/auth.interface';
 
@@ -30,7 +30,7 @@ export class LoginService {
       this.http
         .post<
           ApiSuccessResponse<AuthSuccessData>
-        >(`${environment.BASE_URL}/users/signin`, data)
+        >(API_ENDPOINTS.AUTH.LOGIN(), data)
         .pipe(
           tap((res) => {
             localStorage.setItem('token', res.data.token);

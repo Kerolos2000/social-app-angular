@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom, tap } from 'rxjs';
 import { ROUTES } from '../../constants/routes';
-import { environment } from '../../environments/environment';
+import { API_ENDPOINTS } from '../../constants/api';
 import { ApiSuccessResponse } from '../../models/api-response.interface';
 import { AuthSuccessData } from '../models/auth.interface';
 
@@ -19,7 +19,7 @@ export class RegisterService {
       this.http
         .post<
           ApiSuccessResponse<AuthSuccessData>
-        >(`${environment.BASE_URL}/users/signup`, data)
+        >(API_ENDPOINTS.AUTH.REGISTER(), data)
         .pipe(tap(() => this.router.navigateByUrl(ROUTES.LOGIN))),
     );
   }
