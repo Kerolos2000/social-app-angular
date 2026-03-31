@@ -9,8 +9,8 @@ import {
 import { initFlowbite } from 'flowbite';
 import { LoginService } from '../../../../../core/auth/services/login.service';
 import { ButtonComponent } from '../../../../../shared/components/business/button/button.component';
+import { ImagePreviewComponent } from '../../../../../shared/components/business/image-preview/image-preview.component';
 import { DropdownPrivacyComponent } from './dropdown-privacy/dropdown-privacy.component';
-import { ImagePreviewComponent } from './image-preview/image-preview.component';
 
 @Component({
   selector: 'app-create-post',

@@ -6,9 +6,9 @@ import {
   QueryClient,
 } from '@tanstack/angular-query-experimental';
 import { ButtonComponent } from '../../../../../shared/components/business/button/button.component';
+import { ImagePreviewComponent } from '../../../../../shared/components/business/image-preview/image-preview.component';
 import { User } from '../../../../../shared/models/user.interface';
 import { CommentService } from '../../services/comment.service';
-import { ImagePreviewComponent } from '../../../posts/components/create-post/image-preview/image-preview.component';
 
 @Component({
   selector: 'app-comment-form',
