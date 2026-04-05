@@ -13,7 +13,9 @@
     <div class="flex items-center gap-3 text-xs text-muted font-medium">
       <span>{{ commentsCount() }} comments</span>
       <span>0 shares</span>
-      <button class="link">View details</button>
+      <a [routerLink]="['/' + ROUTES.POST_DETAILS + postId()]" class="link"
+        >View details</a
+      >
     </div>
   </div>
 

@@ -19,9 +19,12 @@
           >
           <span class="text-2xs opacity-60 flex-none">&bull;</span>
         }
-        <span class="whitespace-nowrap shrink-0">{{
-          post().createdAt | relativeTime
-        }}</span>
+        <a
+          [routerLink]="['/' + ROUTES.POST_DETAILS + post().id]"
+          class="whitespace-nowrap shrink-0 transition hover:underline"
+        >
+          {{ post().createdAt | relativeTime }}
+        </a>
         <span class="text-2xs opacity-60 flex-none">&bull;</span>
         <span class="flex items-center gap-1 whitespace-nowrap shrink-0">
           <i [class]="privacyConfig().icon + ' text-2xs'"></i>

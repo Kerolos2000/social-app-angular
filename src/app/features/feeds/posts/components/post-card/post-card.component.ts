@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input, linkedSignal, signal } from '@angular/core';
 import { User } from '../../../../../shared/models/user.interface';
 import { Post } from '../../models/post.interface';
 import { PostActionsComponent } from './components/post-actions/post-actions.component';
@@ -19,8 +19,10 @@ import { PostHeaderComponent } from './components/post-header/post-header.compon
 export class PostCardComponent {
   post = input.required<Post>();
   user = input.required<User>();
+  showComments = input<boolean>(false);
 
-  isCommentInputVisible = signal(false);
+  isCommentInputVisible = linkedSignal(() => this.showComments());
+
   isLiked = computed(() => {
     return this.post().likes?.includes(this.user()._id);
   });

@@ -1,0 +1,9 @@
+@if (postQuery.isLoading()) {
+  <app-post-card-skeleton [count]="1" />
+} @else {
+  <app-post-card
+    [post]="postQuery.data()!"
+    [user]="user()!"
+    [showComments]="true"
+  />
+}

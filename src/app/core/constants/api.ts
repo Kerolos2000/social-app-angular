@@ -20,6 +20,7 @@ export const API_ENDPOINTS = {
     LIKE: (postId: string) => `${environment.BASE_URL}/posts/${postId}/like`,
     BOOKMARK: (postId: string) =>
       `${environment.BASE_URL}/posts/${postId}/bookmark`,
+    GET_ONE: (postId: string) => `${environment.BASE_URL}/posts/${postId}`,
     DELETE: (postId: string) => `${environment.BASE_URL}/posts/${postId}`,
     CREATE_COMMENT: (postId: string) =>
       `${environment.BASE_URL}/posts/${postId}/comments`,

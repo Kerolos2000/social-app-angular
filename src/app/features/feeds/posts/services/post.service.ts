@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { API_ENDPOINTS } from '../../../../core/constants/api';
 import { ApiSuccessResponse } from '../../../../core/models/api-response.interface';
-import { PostFeedResponse } from '../models/post.interface';
+import { PostFeedResponse, PostResponse } from '../models/post.interface';
 import { Privacy } from '../models/privacy.interface';
 
 @Injectable({
@@ -11,6 +11,14 @@ import { Privacy } from '../models/privacy.interface';
 })
 export class PostService {
   private readonly http = inject(HttpClient);
+
+  getPostById(postId: string) {
+    return lastValueFrom(
+      this.http.get<ApiSuccessResponse<PostResponse>>(
+        API_ENDPOINTS.POSTS.GET_ONE(postId),
+      ),
+    );
+  }
 
   getFeed(only: Privacy, limit: number = 10) {
     return lastValueFrom(

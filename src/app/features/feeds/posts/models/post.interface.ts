@@ -1,6 +1,6 @@
 import { User } from '../../../../shared/models/user.interface';
-import { Privacy } from './privacy.interface';
 import { Comment } from '../../comments/models/comment.interface';
+import { Privacy } from './privacy.interface';
 
 export interface Post {
   _id: string;
@@ -21,3 +21,5 @@ export interface Post {
 }
 
 export type PostFeedResponse = { posts: Post[] } | { bookmarks: Post[] };
+
+export type PostResponse = { post: Post };

@@ -36,6 +36,13 @@ export const routes: Routes = [
         path: ROUTES.NOTIFICATIONS,
         component: NotificationsComponent,
       },
+      {
+        path: ROUTES.POST_DETAILS + ':id',
+        loadComponent: () =>
+          import('./features/feeds/posts/pages/post-details/post-details.component').then(
+            (c) => c.PostDetailsComponent,
+          ),
+      },
     ],
   },
   {
