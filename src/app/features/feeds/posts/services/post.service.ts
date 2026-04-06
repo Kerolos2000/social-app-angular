@@ -47,6 +47,19 @@ export class PostService {
   }
 
   deletePost(postId: string) {
-    return lastValueFrom(this.http.delete(API_ENDPOINTS.POSTS.DELETE(postId)));
+    return lastValueFrom(
+      this.http.delete<ApiSuccessResponse<void>>(
+        API_ENDPOINTS.POSTS.DELETE(postId),
+      ),
+    );
+  }
+
+  updatePost(postId: string, text: string) {
+    return lastValueFrom(
+      this.http.put<ApiSuccessResponse<PostResponse>>(
+        API_ENDPOINTS.POSTS.UPDATE(postId),
+        { body: text },
+      ),
+    );
   }
 }

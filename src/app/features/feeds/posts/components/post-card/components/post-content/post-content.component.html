@@ -1,12 +1,21 @@
 <div class="flex flex-col gap-2">
-  <p class="text-sm">
-    {{ body() }}
-  </p>
+  @if (isEditing()) {
+    <app-post-editor
+      [initialValue]="body()"
+      [isLoading]="isSaving()"
+      (onSave)="onEditSave($event)"
+      (onCancel)="onEditCancel()"
+    />
+  } @else {
+    <p class="text-sm wrap-break-word whitespace-pre-wrap">
+      {{ body() }}
+    </p>
+  }
   @if (image()) {
-    <div class="rounded-md overflow-hidden w-full aspect-video">
+    <div class="rounded-md overflow-hidden w-full aspect-video mt-1">
       <img
         [src]="image()"
-        class="w-full h-full object-contain"
+        class="w-full h-full object-contain bg-neutral-primary-strong"
         alt="post image"
       />
     </div>

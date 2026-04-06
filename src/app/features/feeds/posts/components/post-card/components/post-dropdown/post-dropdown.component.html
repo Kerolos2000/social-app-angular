@@ -1,0 +1,47 @@
+<div class="relative">
+  <button
+    [id]="'dropdownButton-' + postId()"
+    [attr.data-dropdown-toggle]="'dropdown-' + postId()"
+    appButton
+    class="btn-outline btn-icon relative z-40"
+    type="button"
+  >
+    <i class="fa-solid fa-ellipsis text-sm"></i>
+  </button>
+
+  <div
+    [id]="'dropdown-' + postId()"
+    class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-md shadow-md w-40"
+  >
+    <button
+      appButton
+      icon="fa-solid fa-link"
+      (click)="copyLink()"
+      class="btn-ghost w-full justify-start"
+    >
+      Copy Link
+    </button>
+
+    @if (isMyPost()) {
+      <button
+        appButton
+        icon="fa-solid fa-pen"
+        (click)="editPost()"
+        class="btn-ghost w-full justify-start"
+      >
+        Edit Post
+      </button>
+      <div class="border-t border-t-default-medium my-0.5"></div>
+      <button
+        [attr.data-modal-target]="'deleteModal-' + postId()"
+        [attr.data-modal-toggle]="'deleteModal-' + postId()"
+        class="btn-danger-ghost w-full justify-start"
+        appButton
+        icon="fa-solid fa-trash"
+        (click)="deleteToggle()"
+      >
+        Delete Post
+      </button>
+    }
+  </div>
+</div>
