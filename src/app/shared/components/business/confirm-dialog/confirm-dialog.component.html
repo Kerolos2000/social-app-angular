@@ -1,0 +1,43 @@
+<div
+  [id]="id()"
+  tabindex="-1"
+  aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-screen bg-foreground/10 backdrop-blur-sm"
+>
+  <div class="relative p-4 w-full max-w-sm max-h-full">
+    <div
+      class="relative bg-neutral-primary-strong rounded-md shadow-lg border border-default-medium"
+    >
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+          <h3 class="text-lg font-bold">{{ title() }}</h3>
+          <p class="text-muted text-sm">
+            {{ description() }}
+          </p>
+        </div>
+
+        <div class="flex justify-end gap-2">
+          <button
+            [attr.data-modal-hide]="id()"
+            class="btn-ghost"
+            appButton
+            type="button"
+            (click)="cancel()"
+          >
+            {{ cancelText() }}
+          </button>
+          <button
+            (click)="confirm()"
+            [class]="confirmButtonClass()"
+            appButton
+            [isLoading]="isLoading()"
+            [disabled]="isLoading()"
+            type="button"
+          >
+            {{ confirmText() }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
