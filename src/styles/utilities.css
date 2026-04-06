@@ -62,8 +62,13 @@
   @apply btn text-white bg-dark border-transparent hover:bg-dark-strong;
 }
 
+
 @utility btn-ghost {
-  @apply btn text-heading bg-neutral-primary border-transparent hover:bg-neutral-secondary-medium;
+  @apply btn text-heading bg-neutral-primary border-transparent hover:bg-neutral-secondary-medium border-none shadow-none;
+}
+
+@utility btn-danger-ghost {
+  @apply btn text-danger hover:bg-danger-soft border-none shadow-none;
 }
 
 @utility btn-primary-outline {
@@ -90,7 +95,7 @@
   @apply btn text-dark bg-transparent border-dark border-2 hover:bg-dark hover:text-white;
 }
 
-@utility btn-ghost-outline {
+@utility btn-outline {
   @apply btn text-heading bg-transparent border-default hover:bg-neutral-secondary-medium;
 }
 
