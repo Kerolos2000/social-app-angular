@@ -45,8 +45,8 @@
       appButton
       [icon]="'fa-regular fa-paper-plane text-xs'"
       type="submit"
-      [isLoading]="false"
-      [disabled]="!isPostValid"
+      [isLoading]="createPostMutation.isPending()"
+      [disabled]="!isPostValid || createPostMutation.isPending()"
       class="btn-primary"
     >
       Post

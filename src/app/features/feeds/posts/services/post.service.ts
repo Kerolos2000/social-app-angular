@@ -11,6 +11,16 @@ import { Privacy } from '../models/privacy.interface';
 })
 export class PostService {
   private readonly http = inject(HttpClient);
+  createPost(formData: FormData) {
+    console.log('🚀 ~ CreatePostComponent ~ formData:', formData);
+
+    return lastValueFrom(
+      this.http.post<ApiSuccessResponse<PostResponse>>(
+        API_ENDPOINTS.POSTS.CREATE(),
+        formData,
+      ),
+    );
+  }
 
   getPostById(postId: string) {
     return lastValueFrom(

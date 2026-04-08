@@ -60,9 +60,6 @@ export class PostCardComponent {
         this.toastr.success(res.message),
       ]);
     },
-    onError: (error) => {
-      this.toastr.error(error.message);
-    },
   }));
 
   toggleCommentInput() {

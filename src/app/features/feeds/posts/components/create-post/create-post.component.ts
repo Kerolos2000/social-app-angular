@@ -6,10 +6,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import {
+  injectMutation,
+  QueryClient,
+} from '@tanstack/angular-query-experimental';
 import { initFlowbite } from 'flowbite';
 import { LoginService } from '../../../../../core/auth/services/login.service';
 import { ButtonComponent } from '../../../../../shared/components/business/button/button.component';
 import { ImagePreviewComponent } from '../../../../../shared/components/business/image-preview/image-preview.component';
+import { PostService } from '../../services/post.service';
 import { DropdownPrivacyComponent } from './dropdown-privacy/dropdown-privacy.component';
 
 @Component({
@@ -24,11 +29,26 @@ import { DropdownPrivacyComponent } from './dropdown-privacy/dropdown-privacy.co
 })
 export class CreatePostComponent implements OnInit {
   private readonly loginService = inject(LoginService);
-  private readonly fb = inject(FormBuilder);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly postService = inject(PostService);
+  private readonly queryClient = inject(QueryClient);
 
   user = this.loginService.user;
 
-  postForm: FormGroup = this.fb.group({
+  createPostMutation = injectMutation(() => {
+    return {
+      mutationFn: (formData: FormData) => this.postService.createPost(formData),
+      onSuccess: () => {
+        this.postForm.reset({
+          visibility: this.postForm.get('visibility')?.value,
+        });
+        this.selectedImage.set(null);
+        return this.queryClient.invalidateQueries({ queryKey: ['feed'] });
+      },
+    };
+  });
+
+  postForm: FormGroup = this.formBuilder.group({
     postText: [''],
     visibility: [
       'public',
@@ -65,21 +85,18 @@ export class CreatePostComponent implements OnInit {
   }
 
   submitPost() {
-    if (!this.isPostValid) return;
+    if (!this.isPostValid || this.createPostMutation.isPending()) return;
 
     const formData = new FormData();
     const postText = this.postForm.get('postText')?.value;
-    if (postText) formData.append('postText', postText);
-
-    formData.append('visibility', this.postForm.get('visibility')?.value);
+    if (postText) formData.append('body', postText);
 
     const imageInput = this.selectedImage();
     if (imageInput) formData.append('image', imageInput);
 
-    console.log('🚀 ~ formData:', this.postForm.value);
+    formData.append('privacy', this.postForm.get('visibility')?.value);
 
-    this.postForm.reset({ visibility: this.postForm.get('visibility')?.value });
-    this.selectedImage.set(null);
+    this.createPostMutation.mutate(formData);
   }
 
   ngOnInit(): void {

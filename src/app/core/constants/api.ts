@@ -21,6 +21,7 @@ export const API_ENDPOINTS = {
     BOOKMARK: (postId: string) =>
       `${environment.BASE_URL}/posts/${postId}/bookmark`,
     GET_ONE: (postId: string) => `${environment.BASE_URL}/posts/${postId}`,
+    CREATE: () => `${environment.BASE_URL}/posts`,
     UPDATE: (postId: string) => `${environment.BASE_URL}/posts/${postId}`,
     DELETE: (postId: string) => `${environment.BASE_URL}/posts/${postId}`,
     CREATE_COMMENT: (postId: string) =>
