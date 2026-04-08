@@ -14,6 +14,10 @@ export const API_ENDPOINTS = {
       `${environment.BASE_URL}/users/${userId}/follow`,
     BOOKMARKS: (page: number = 1, limit: number = 10) =>
       `${environment.BASE_URL}/users/bookmarks?page=${page}&limit=${limit}`,
+    GET_PROFILE: (userId: string) =>
+      `${environment.BASE_URL}/users/${userId}/profile`,
+    PROFILE_POSTS: (userId: string, limit: number = 10) =>
+      `${environment.BASE_URL}/users/${userId}/posts?limit=${limit}`,
   },
   POSTS: {
     FEED: (only: Privacy = 'following', limit: number = 10) =>

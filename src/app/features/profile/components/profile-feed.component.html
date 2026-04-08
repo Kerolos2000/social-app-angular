@@ -1,0 +1,60 @@
+<div class="bg-white rounded-md p-4 shadow-sm flex flex-col gap-4">
+  <div class="flex flex-wrap justify-between items-center gap-4">
+    <div class="flex items-center gap-3">
+      <div
+        class="w-10 h-10 bg-brand-soft/30 text-brand flex items-center justify-center rounded-md"
+      >
+        <i class="fa-solid fa-table-cells-large"></i>
+      </div>
+      <h3 class="font-bold text-gray-900 m-0">Content Feed</h3>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex bg-gray-100 p-1 rounded-md">
+      <button
+        (click)="activeTabChange.emit('posts')"
+        [class.bg-brand]="activeTab() === 'posts'"
+        [class.text-white]="activeTab() === 'posts'"
+        [class.text-gray-500]="activeTab() !== 'posts'"
+        class="px-5 py-2 rounded-md cursor-pointer font-bold text-sm flex items-center gap-2 transition-all"
+      >
+        <i class="fa-solid fa-file-lines"></i>
+        My Posts
+      </button>
+
+      @if (isOwnProfile()) {
+        <button
+          (click)="activeTabChange.emit('bookmarks')"
+          [class.bg-brand]="activeTab() === 'bookmarks'"
+          [class.text-white]="activeTab() === 'bookmarks'"
+          [class.text-gray-500]="activeTab() !== 'bookmarks'"
+          class="px-5 py-2 rounded-md cursor-pointer font-bold text-sm flex items-center gap-2 transition-all"
+        >
+          <i class="fa-regular fa-bookmark"></i>
+          Bookmarks
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Posts List -->
+  <div class="flex flex-col gap-4">
+    @if (isLoading()) {
+      <app-post-card-skeleton [count]="2" />
+    } @else if (posts().length > 0) {
+      <div class="flex flex-col gap-4">
+        @for (post of posts(); track post._id) {
+          <app-post-card [post]="post" [user]="currentUser()!" />
+        }
+      </div>
+    } @else {
+      <app-empty-state
+        [message]="
+          activeTab() === 'posts'
+            ? 'No posts yet. Start sharing your thoughts!'
+            : 'No saved posts found.'
+        "
+      />
+    }
+  </div>
+</div>

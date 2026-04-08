@@ -1,0 +1,77 @@
+<div class="bg-white rounded-md p-6 shadow-sm h-fit">
+  <h3 class="text-brand text-xs font-bold uppercase mb-4">About</h3>
+
+  <div class="flex flex-col gap-5">
+    <div class="flex items-start gap-4">
+      <div
+        class="w-8 h-8 bg-brand-soft/30 text-brand flex items-center justify-center rounded-md shrink-0"
+      >
+        <i class="fa-regular fa-envelope"></i>
+      </div>
+      <div class="flex flex-col">
+        <div
+          class="text-2xs uppercase text-gray-400 font-semibold leading-tight"
+        >
+          Email
+        </div>
+        <div class="text-sm text-gray-900 font-medium">
+          {{ profile()?.email }}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-start gap-4">
+      <div
+        class="w-8 h-8 bg-brand-soft/30 text-brand flex items-center justify-center rounded-md shrink-0"
+      >
+        <i class="fa-regular fa-calendar"></i>
+      </div>
+      <div class="flex flex-col">
+        <div
+          class="text-2xs uppercase text-gray-400 font-semibold leading-tight"
+        >
+          Date of Birth
+        </div>
+        <div class="text-sm text-gray-900 font-medium">
+          {{ profile()?.dateOfBirth | date: "dd MMM yyyy" }}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-start gap-4">
+      <div
+        class="w-8 h-8 bg-brand-soft/30 text-brand flex items-center justify-center rounded-md shrink-0"
+      >
+        <i class="fa-solid fa-venus-mars"></i>
+      </div>
+      <div class="flex flex-col">
+        <div
+          class="text-2xs uppercase text-gray-400 font-semibold leading-tight"
+        >
+          Gender
+        </div>
+        <div class="text-sm text-gray-900 font-medium capitalize">
+          {{ profile()?.gender }}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-start gap-4">
+      <div
+        class="w-8 h-8 bg-brand-soft/30 text-brand flex items-center justify-center rounded-md shrink-0"
+      >
+        <i class="fa-regular fa-clock"></i>
+      </div>
+      <div class="flex flex-col">
+        <div
+          class="text-2xs uppercase text-gray-400 font-semibold leading-tight"
+        >
+          Joined
+        </div>
+        <div class="text-sm text-gray-900 font-medium">
+          {{ profile()?.createdAt | date: "MMM yyyy" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

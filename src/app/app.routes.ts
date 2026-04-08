@@ -29,6 +29,10 @@ export const routes: Routes = [
         component: ProfileComponent,
       },
       {
+        path: ROUTES.PROFILE + '/:id',
+        component: ProfileComponent,
+      },
+      {
         path: ROUTES.SETTINGS,
         component: SettingsComponent,
       },
