@@ -58,4 +58,40 @@ export class CommentService {
       ),
     );
   }
+
+  updateComment(
+    postId: string,
+    commentId: string,
+    commentBody: string,
+    image?: File,
+  ) {
+    const formData = new FormData();
+    formData.append('content', commentBody);
+    if (image) {
+      formData.append('image', image);
+    }
+    return lastValueFrom(
+      this.http.put<ApiSuccessResponse<Comment>>(
+        API_ENDPOINTS.POSTS.UPDATE_COMMENT(postId, commentId),
+        formData,
+      ),
+    );
+  }
+
+  deleteComment(postId: string, commentId: string) {
+    return lastValueFrom(
+      this.http.delete<ApiSuccessResponse<void>>(
+        API_ENDPOINTS.POSTS.DELETE_COMMENT(postId, commentId),
+      ),
+    );
+  }
+
+  likeComment(postId: string, commentId: string) {
+    return lastValueFrom(
+      this.http.put<ApiSuccessResponse<void>>(
+        API_ENDPOINTS.POSTS.LIKE_COMMENT(postId, commentId),
+        {},
+      ),
+    );
+  }
 }

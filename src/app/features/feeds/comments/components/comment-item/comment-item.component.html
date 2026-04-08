@@ -6,30 +6,119 @@
     [alt]="comment().commentCreator.name"
   />
   <div class="flex flex-col gap-1 flex-1 min-w-0">
-    <div class="card-secondary w-fit flex flex-col gap-1 max-w-[90%]">
-      <p class="text-sm font-bold">
-        {{ comment().commentCreator.name }}
-      </p>
-      <p class="text-xs font-semibold text-body-subtle wrap-break-word">
-        {{ comment().content }}
-      </p>
-      @if (comment().image) {
-        <img
-          [src]="comment().image"
-          class="w-80 aspect-video object-contain"
-          [alt]="'Image by ' + comment().commentCreator.name"
-        />
+    <div class="flex items-start gap-1 group/item">
+      <div
+        class="card-secondary w-fit flex flex-col gap-1 max-w-[90%] relative"
+      >
+        <p class="text-sm font-bold">
+          {{ comment().commentCreator.name }}
+        </p>
+        <p class="text-xs font-semibold text-muted wrap-break-word">
+          {{ comment().content }}
+        </p>
+
+        @if (comment().image) {
+          <div class="mt-2rounded-md overflow-hidden border border-border">
+            <img
+              [src]="comment().image"
+              class="w-full max-h-80 object-contain bg-black/5"
+              [alt]="'Image by ' + comment().commentCreator.name"
+            />
+          </div>
+        }
+      </div>
+
+      @if (isMyComment()) {
+        <div>
+          <button
+            appButton
+            icon="fa-solid fa-ellipsis-vertical"
+            [attr.id]="'dropdownMenuIconHorizontalButton-' + commentId()"
+            [attr.data-dropdown-toggle]="
+              'dropdownDotsHorizontal-' + commentId()
+            "
+            class="btn-icon btn-ghost"
+            type="button"
+          ></button>
+
+          <div
+            [attr.id]="'dropdownDotsHorizontal-' + commentId()"
+            class="z-10 hidden w-32 card-secondary"
+          >
+            <button
+              appButton
+              icon="fa-solid fa-pen-to-square w-full justify-start flex"
+              (click)="isEditing.set(!isEditing())"
+              class="nav-link-hover"
+            >
+              {{ isEditing() ? "Cancel" : "Edit" }}
+            </button>
+
+            <button
+              appButton
+              [attr.data-modal-target]="'delete-modal-' + commentId()"
+              [attr.data-modal-toggle]="'delete-modal-' + commentId()"
+              class="nav-link text-danger hover:bg-danger-soft w-full justify-start flex"
+              icon="fa-solid fa-trash-can"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       }
     </div>
+
     <div
-      class="flex items-center gap-4 px-2 text-sm font-semibold text-muted mt-0.5"
+      class="flex items-center gap-4 px-2 text-[12px] font-bold text-muted mt-0.5"
     >
-      <span class="text-xs">{{ comment().createdAt | relativeTime }}</span>
-      <button class="link">Like</button>
+      <span class="font-normal opacity-75">
+        {{ comment().createdAt | relativeTime }}
+      </span>
+
+      <button
+        (click)="likeMutation.mutate()"
+        [disabled]="likeMutation.isPending()"
+        class="flex items-center gap-1.5 transition-colors hover:text-primary"
+        [class.text-primary]="isLiked()"
+      >
+        <span class="hover:underline">Like</span>
+        @if (comment().likes && (comment().likes?.length || 0) > 0) {
+          <span>
+            {{ comment().likes?.length }}
+          </span>
+        }
+      </button>
+
       @if (!comment().isReply) {
-        <button (click)="toggleReplyForm()" class="link">Reply</button>
+        <button (click)="toggleReplyForm()" class="hover:underline">
+          Reply
+        </button>
       }
     </div>
+
+    @if (isEditing()) {
+      <div class="mt-2 ml-2">
+        <app-comment-form
+          [user]="user()"
+          [postId]="postId()"
+          [commentId]="commentId()"
+          [initialContent]="comment().content"
+          [isEdit]="true"
+          (commentUpdated)="isEditing.set(false)"
+          (cancel)="isEditing.set(false)"
+        />
+      </div>
+    }
+
+    <app-confirm-dialog
+      [id]="'delete-modal-' + commentId()"
+      [title]="'Delete Comment'"
+      [description]="
+        'Are you sure you want to delete this comment? This action cannot be undone.'
+      "
+      [isLoading]="deleteMutation.isPending()"
+      (onConfirm)="deleteMutation.mutate()"
+    />
 
     @if (showReplies()) {
       @if (repliesQuery.isPending()) {

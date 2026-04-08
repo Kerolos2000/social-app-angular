@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, output, signal } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   injectMutation,
@@ -28,12 +28,24 @@ export class CommentFormComponent {
   user = input.required<User>();
   postId = input.required<string>();
   parentCommentId = input<string | null>(null);
+  commentId = input<string | null>(null);
+  initialContent = input<string>('');
+  isEdit = input<boolean>(false);
+
   commentAdded = output<void>();
+  commentUpdated = output<void>();
+  cancel = output<void>();
 
   commentForm = this.formBuilder.group({
-    comment: ['', [Validators.required, Validators.minLength(1)]],
+    comment: [this.initialContent(), [Validators.required, Validators.minLength(1)]],
     image: [null as File | null],
   });
+
+  ngOnInit() {
+    if (this.isEdit()) {
+      this.commentForm.patchValue({ comment: this.initialContent() });
+    }
+  }
 
   selectedImage = signal<File | null>(null);
 
@@ -56,6 +68,16 @@ export class CommentFormComponent {
     mutationFn: () => {
       const content = this.commentForm.get('comment')?.value || '';
       const image = this.selectedImage();
+
+      if (this.isEdit() && this.commentId()) {
+        return this.commentService.updateComment(
+          this.postId(),
+          this.commentId()!,
+          content,
+          image || undefined,
+        );
+      }
+
       const parentId = this.parentCommentId();
 
       if (parentId) {
@@ -75,9 +97,14 @@ export class CommentFormComponent {
     },
 
     onSuccess: () => {
+      if (this.isEdit()) {
+        this.commentUpdated.emit();
+      } else {
+        this.commentAdded.emit();
+      }
+
       this.commentForm.reset();
       this.selectedImage.set(null);
-      this.commentAdded.emit();
 
       return Promise.all([
         this.queryClient.invalidateQueries({

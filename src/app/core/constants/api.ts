@@ -32,5 +32,11 @@ export const API_ENDPOINTS = {
       `${environment.BASE_URL}/posts/${postId}/comments/${commentId}/replies`,
     CREATE_REPLY: (postId: string, commentId: string) =>
       `${environment.BASE_URL}/posts/${postId}/comments/${commentId}/replies`,
+    UPDATE_COMMENT: (postId: string, commentId: string) =>
+      `${environment.BASE_URL}/posts/${postId}/comments/${commentId}`,
+    DELETE_COMMENT: (postId: string, commentId: string) =>
+      `${environment.BASE_URL}/posts/${postId}/comments/${commentId}`,
+    LIKE_COMMENT: (postId: string, commentId: string) =>
+      `${environment.BASE_URL}/posts/${postId}/comments/${commentId}/like`,
   },
 };
