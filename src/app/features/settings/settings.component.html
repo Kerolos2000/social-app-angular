@@ -1,1 +1,53 @@
-<p>settings works!</p>
+<div class="card-secondary gap-4 flex flex-col p-4">
+  <h2 class="text-3xl font-bold text-body">Change Password</h2>
+
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="passwordForm"
+    class="flex flex-col gap-2"
+  >
+    <div class="input-field">
+      <i class="input-icon fa-solid fa-key"></i>
+      <input
+        type="password"
+        class="input"
+        placeholder="Enter current password"
+        formControlName="password"
+      />
+      <app-error-control
+        [control]="passwordForm.get('password')"
+        [messages]="{
+          required: 'Current password is required',
+          minlength: 'Minimum 6 characters',
+        }"
+      />
+    </div>
+
+    <div class="input-field">
+      <i class="input-icon fa-solid fa-key"></i>
+      <input
+        type="password"
+        class="input"
+        placeholder="Enter new password"
+        formControlName="newPassword"
+      />
+      <app-error-control
+        [control]="passwordForm.get('newPassword')"
+        [messages]="{
+          required: 'New password is required',
+          minlength: 'Minimum 6 characters',
+        }"
+      />
+    </div>
+
+    <button
+      appButton
+      type="submit"
+      [isLoading]="mutation.isPending()"
+      class="btn-primary w-full"
+      [disabled]="passwordForm.invalid"
+    >
+      Update Password
+    </button>
+  </form>
+</div>

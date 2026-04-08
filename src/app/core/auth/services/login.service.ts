@@ -49,4 +49,19 @@ export class LoginService {
     this.queryClient.clear();
     this.router.navigateByUrl(ROUTES.LOGIN);
   }
+
+  changePassword(data: object) {
+    return lastValueFrom(
+      this.http
+        .patch<ApiSuccessResponse<{ token: string }>>(
+          API_ENDPOINTS.AUTH.CHANGE_PASSWORD(),
+          data,
+        )
+        .pipe(
+          tap((res) => {
+            localStorage.setItem('token', res.data.token);
+          }),
+        ),
+    );
+  }
 }

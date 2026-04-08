@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: () => `${environment.BASE_URL}/users/signin`,
     REGISTER: () => `${environment.BASE_URL}/users/signup`,
+    CHANGE_PASSWORD: () => `${environment.BASE_URL}/users/change-password`,
   },
   USERS: {
     SUGGESTIONS: (limit: number = 5) =>
