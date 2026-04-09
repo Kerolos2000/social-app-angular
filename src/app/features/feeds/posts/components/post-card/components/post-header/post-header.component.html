@@ -47,7 +47,7 @@
       "
       (click)="toggleBookmark('bookmark')"
     ></button>
-    
+
     <app-post-dropdown
       [postId]="post().id"
       [isMyPost]="isMyPost()"
@@ -64,5 +64,5 @@
     description="Are you sure you want to delete this post? This action cannot be undone."
     confirmText="Delete"
     (onConfirm)="confirmDelete()"
-  ></app-confirm-dialog>
+  />
 }

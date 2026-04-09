@@ -13,35 +13,34 @@
     [id]="'dropdown-' + postId()"
     class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-md shadow-md w-40"
   >
-    <button
-      appButton
-      icon="fa-solid fa-link"
-      (click)="copyLink()"
-      class="btn-ghost w-full justify-start"
-    >
-      Copy Link
-    </button>
+    <div class="px-2 py-2 text-sm text-body font-medium flex flex-col gap-1">
+      <div
+        (click)="copyLink()"
+        class="nav-link-hover cursor-pointer"
+      >
+        <i class="fa-solid fa-link w-4 me-1"></i>
+        Copy Link
+      </div>
 
-    @if (isMyPost()) {
-      <button
-        appButton
-        icon="fa-solid fa-pen"
-        (click)="editPost()"
-        class="btn-ghost w-full justify-start"
-      >
-        Edit Post
-      </button>
-      <div class="border-t border-t-default-medium my-0.5"></div>
-      <button
-        [attr.data-modal-target]="'deleteModal-' + postId()"
-        [attr.data-modal-toggle]="'deleteModal-' + postId()"
-        class="btn-danger-ghost w-full justify-start"
-        appButton
-        icon="fa-solid fa-trash"
-        (click)="deleteToggle()"
-      >
-        Delete Post
-      </button>
-    }
+      @if (isMyPost()) {
+        <div
+          (click)="editPost()"
+          class="nav-link-hover cursor-pointer"
+        >
+          <i class="fa-solid fa-pen w-4 me-1"></i>
+          Edit Post
+        </div>
+
+        <div
+          [attr.data-modal-target]="'deleteModal-' + postId()"
+          [attr.data-modal-toggle]="'deleteModal-' + postId()"
+          (click)="deleteToggle()"
+          class="nav-link text-danger hover:bg-danger-soft border-t border-default-medium mt-1 cursor-pointer"
+        >
+          <i class="fa-solid fa-trash w-4 me-1"></i>
+          Delete Post
+        </div>
+      }
+    </div>
   </div>
 </div>

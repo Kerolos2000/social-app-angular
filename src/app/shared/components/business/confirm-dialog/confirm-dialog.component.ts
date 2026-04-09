@@ -1,4 +1,5 @@
-import { Component, input, OnDestroy, output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
+import { initFlowbite } from 'flowbite';
 import { ButtonComponent } from '../button/button.component';
 
 @Component({
@@ -6,7 +7,7 @@ import { ButtonComponent } from '../button/button.component';
   imports: [ButtonComponent],
   templateUrl: './confirm-dialog.component.html',
 })
-export class ConfirmDialogComponent implements OnDestroy {
+export class ConfirmDialogComponent implements OnInit {
   id = input.required<string>();
   title = input.required<string>();
   description = input.required<string>();
@@ -26,7 +27,7 @@ export class ConfirmDialogComponent implements OnDestroy {
     this.onCancel.emit();
   }
 
-  ngOnDestroy() {
-    document.body.classList.remove('overflow-hidden');
+  ngOnInit(): void {
+    initFlowbite();
   }
 }

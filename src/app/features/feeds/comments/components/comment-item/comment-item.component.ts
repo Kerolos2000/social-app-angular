@@ -1,18 +1,10 @@
 import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  computed,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import {
   injectMutation,
   injectQuery,
   QueryClient,
 } from '@tanstack/angular-query-experimental';
-import { initFlowbite } from 'flowbite';
 import { ToastrService } from 'ngx-toastr';
 import { ApiSuccessResponse } from '../../../../../core/models/api-response.interface';
 import { ButtonComponent } from '../../../../../shared/components/business/button/button.component';
@@ -42,7 +34,7 @@ import { CommentSkeletonComponent } from '../comment-skeleton/comment-skeleton.c
   ],
   templateUrl: './comment-item.component.html',
 })
-export class CommentItemComponent implements AfterViewInit {
+export class CommentItemComponent {
   private readonly commentService = inject(CommentService);
   private readonly queryClient = inject(QueryClient);
   private readonly toastr = inject(ToastrService);
@@ -99,6 +91,7 @@ export class CommentItemComponent implements AfterViewInit {
       this.commentService.deleteComment(this.postId(), this.commentId()),
     onSuccess: () => {
       this.toastr.success('Comment deleted successfully');
+
       return Promise.all([
         this.queryClient.invalidateQueries({
           queryKey: ['post-comments', this.postId()],
@@ -156,9 +149,5 @@ export class CommentItemComponent implements AfterViewInit {
 
   toggleReplyForm() {
     this.showReplyForm.update((v) => !v);
-  }
-
-  ngAfterViewInit() {
-    initFlowbite();
   }
 }
