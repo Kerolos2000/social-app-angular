@@ -113,6 +113,15 @@ export class CommentFormComponent {
         this.queryClient.invalidateQueries({
           queryKey: ['comment-replies', this.parentCommentId()],
         }),
+        this.queryClient.invalidateQueries({
+          queryKey: ['feed'],
+        }),
+        this.queryClient.invalidateQueries({
+          queryKey: ['post', this.postId()],
+        }),
+        this.queryClient.invalidateQueries({
+          queryKey: ['profile-posts'],
+        }),
       ]);
     },
   }));

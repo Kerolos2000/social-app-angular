@@ -64,4 +64,13 @@ export class LoginService {
         ),
     );
   }
+
+  updateUser(userUpdate: Partial<User>) {
+    const currentUser = this._user();
+    if (currentUser) {
+      const updatedUser = { ...currentUser, ...userUpdate };
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      this._user.set(updatedUser);
+    }
+  }
 }

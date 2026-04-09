@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, OnDestroy, output } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { ButtonComponent } from '../button/button.component';
   imports: [ButtonComponent],
   templateUrl: './confirm-dialog.component.html',
 })
-export class ConfirmDialogComponent {
+export class ConfirmDialogComponent implements OnDestroy {
   id = input.required<string>();
   title = input.required<string>();
   description = input.required<string>();
@@ -24,5 +24,9 @@ export class ConfirmDialogComponent {
 
   cancel() {
     this.onCancel.emit();
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('overflow-hidden');
   }
 }

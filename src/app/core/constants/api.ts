@@ -18,6 +18,7 @@ export const API_ENDPOINTS = {
       `${environment.BASE_URL}/users/${userId}/profile`,
     PROFILE_POSTS: (userId: string, limit: number = 10) =>
       `${environment.BASE_URL}/users/${userId}/posts?limit=${limit}`,
+    UPLOAD_PHOTO: () => `${environment.BASE_URL}/users/upload-photo`,
   },
   POSTS: {
     FEED: (only: Privacy = 'following', limit: number = 10) =>

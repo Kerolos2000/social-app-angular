@@ -35,4 +35,15 @@ export class ProfileService {
       ),
     );
   }
+
+  uploadProfilePhoto(photo: File) {
+    const formData = new FormData();
+    formData.append('photo', photo);
+    return lastValueFrom(
+      this.http.put<ApiSuccessResponse<any>>(
+        API_ENDPOINTS.USERS.UPLOAD_PHOTO(),
+        formData,
+      ),
+    );
+  }
 }

@@ -24,11 +24,24 @@
         class="w-full h-full rounded-md object-cover"
       />
       @if (isOwnProfile()) {
-        <div
+        <label
+          for="profile-photo-upload"
           class="absolute bottom-2 right-2 bg-white rounded p-1.5 shadow-sm cursor-pointer border border-gray-100 hover:bg-gray-50 transition-colors"
+          [class.opacity-50]="uploadPhotoMutation.isPending()"
         >
           <i class="fa-solid fa-camera text-brand"></i>
-        </div>
+          @if (uploadPhotoMutation.isPending()) {
+            <i class="fa-solid fa-spinner fa-spin absolute inset-0 m-auto w-fit h-fit text-brand"></i>
+          }
+          <input
+            type="file"
+            id="profile-photo-upload"
+            class="hidden"
+            accept="image/*"
+            (change)="onPhotoSelected($event)"
+            [disabled]="uploadPhotoMutation.isPending()"
+          />
+        </label>
       }
     </div>
 
